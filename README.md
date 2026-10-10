@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./assets/banner.svg" width="100%" alt="پنل رایگان ساخت کانفیگ V2Ray روی کلودفلر بدون بن و بدون فیلتر - TechNamooz Panel"/>
+<img src="./banner.svg" width="100%" alt="پنل رایگان ساخت کانفیگ V2Ray روی کلودفلر بدون بن و بدون فیلتر - TechNamooz Panel"/>
 
 <br>
 
@@ -160,49 +160,34 @@ flowchart LR
 
 > برای اتصال، یکی از کلاینت‌های زیر رو نصب کن و لینک سابسکریپشن رو واردش کن.
 
-### 🤖 اندروید
+<div align="center">
 
-| کلاینت | توضیح |
-|:---|:---|
-| [**v2rayNG**](https://github.com/2dust/v2rayNG) | محبوب‌ترین کلاینت اندروید؛ ساده و سبک |
-| [**Hiddify**](https://github.com/hiddify/hiddify-app) | رابط زیبا، پشتیبانی از پروتکل‌های متنوع |
-| **NekoBox** | پیشرفته با تنظیمات زیاد |
-| [**Karing**](https://github.com/KaringX/karing) | مدرن و چندسکویی |
+| کلاینت | 🤖 Android | 🍎 iOS | 🪟 Windows | 🍏 macOS | 🐧 Linux |
+|:---|:---:|:---:|:---:|:---:|:---:|
+| [**v2rayNG**](https://github.com/2dust/v2rayNG) | ✅ | ❌ | ❌ | ❌ | ❌ |
+| [**Hiddify**](https://github.com/hiddify/hiddify-app) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **v2rayTun** | ✅ | ✅ | ❌ | ❌ | ❌ |
+| **V2Box** | ✅ | ✅ | ❌ | ✅ | ❌ |
+| **Happ** | ✅ | ✅ | ✅ | ✅ | ❌ |
+| **Streisand** | ❌ | ✅ | ❌ | ✅ | ❌ |
+| **Shadowrocket** (پولی) | ❌ | ✅ | ❌ | ❌ | ❌ |
+| [**v2rayN**](https://github.com/2dust/v2rayN) | ❌ | ❌ | ✅ | ❌ | ✅ |
+| [**Karing**](https://github.com/KaringX/karing) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [**Clash Verge Rev**](https://github.com/clash-verge-rev/clash-verge-rev) | ❌ | ❌ | ✅ | ✅ | ✅ |
+| [**v2rayA**](https://github.com/v2rayA/v2rayA) | ❌ | ❌ | ❌ | ❌ | ✅ |
+| **NekoBox** | ✅ | ❌ | ❌ | ❌ | ❌ |
 
-### 🍎 آیفون و آیپد (iOS)
+</div>
 
-| کلاینت | توضیح |
-|:---|:---|
-| **Streisand** | رایگان و محبوب روی iOS |
-| **V2Box** | ساده و کاربردی |
-| **Shadowrocket** | قدرتمند (پولی) |
-| **Hiddify** و **Karing** | رایگان با ظاهر مدرن |
+### ⭐ پیشنهاد من برای هر پلتفرم
 
-### 🪟 ویندوز
-
-| کلاینت | توضیح |
-|:---|:---|
-| [**v2rayN**](https://github.com/2dust/v2rayN) | کلاسیک و پرکاربرد ویندوز |
-| [**Hiddify**](https://github.com/hiddify/hiddify-app) | نصب آسان و رابط ساده |
-| [**Clash Verge Rev**](https://github.com/clash-verge-rev/clash-verge-rev) | مناسب پروفایل‌های Clash |
-| [**Karing**](https://github.com/KaringX/karing) | چندسکویی |
-
-### 🍏 مک (macOS)
-
-| کلاینت | توضیح |
-|:---|:---|
-| **Streisand** و **V2Box** | روی مک‌های اپل سیلیکون هم اجرا میشن |
-| [**Hiddify**](https://github.com/hiddify/hiddify-app) | رایگان و ساده |
-| [**Clash Verge Rev**](https://github.com/clash-verge-rev/clash-verge-rev) | برای کاربران حرفه‌ای |
-
-### 🐧 لینوکس
-
-| کلاینت | توضیح |
-|:---|:---|
-| [**Hiddify**](https://github.com/hiddify/hiddify-app) | ساده‌ترین گزینه |
-| [**v2rayA**](https://github.com/v2rayA/v2rayA) | رابط وب برای مدیریت |
-| [**Clash Verge Rev**](https://github.com/clash-verge-rev/clash-verge-rev) | پشتیبانی از Clash |
-| [**v2rayN**](https://github.com/2dust/v2rayN) | نسخه لینوکس هم داره |
+| پلتفرم | بهترین انتخاب‌ها |
+|:---:|:---|
+| 🤖 **اندروید** | v2rayNG · Hiddify · v2rayTun · Happ |
+| 🍎 **آیفون / آیپد** | Streisand · V2Box · Happ · v2rayTun |
+| 🪟 **ویندوز** | v2rayN · Hiddify · Happ |
+| 🍏 **مک** | Streisand · V2Box · Hiddify · Happ |
+| 🐧 **لینوکس** | Hiddify · v2rayA · v2rayN |
 
 > ⚠️ **نکته:** پشتیبانی هر کلاینت از انواع سابسکریپشن (Fragment، WARP، Raw) فرق داره. اگر یکی کار نکرد، کلاینت دیگه‌ای رو امتحان کن. جدول تست‌شده‌ها رو در ویدیو توضیح دادم.
 
