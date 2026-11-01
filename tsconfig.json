@@ -1,0 +1,30 @@
+{
+    "include": ["src"],
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "types": ["@cloudflare/workers-types"],
+        "moduleResolution": "bundler",
+        "strict": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "skipLibCheck": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "paths": {
+            "@xray/*": ["./src/cores/xray/*"],
+            "@sing-box/*": ["./src/cores/sing-box/*"],
+            "@clash/*": ["./src/cores/clash/*"],
+            "@utils": ["./src/cores/utils"],
+            "@handlers": ["./src/common/handlers"],
+            "@init": ["./src/common/init"],
+            "@common": ["./src/common/common"],
+            "@vless": ["./src/protocols/websocket/vless"],
+            "@trojan": ["./src/protocols/websocket/trojan"],
+            "@warp": ["./src/protocols/warp"],
+            "@kv": ["./src/kv"],
+            "@auth": ["./src/auth"],
+            "#types/*": ["./src/types/*"]
+        }
+    }
+}

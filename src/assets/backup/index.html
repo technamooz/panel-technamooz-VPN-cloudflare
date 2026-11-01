@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#070708">
+    <meta name="color-scheme" content="dark light">
+    <title>بکاپ و بازگردانی · پنل تکناموز v__VERSION__</title>
+    <link rel="icon" href="/favicon.ico">
+    <script>__THEME_BOOT__</script>
+    __STYLE__
+</head>
+
+<body>
+    <div class="svg-sprite" aria-hidden="true">__ICONS__</div>
+
+    <main class="utility-page">
+        <header class="utility-header">
+            <a class="brand" href="/panel" aria-label="پنل تکناموز">
+                <span class="brand-mark">T<span></span></span>
+                <span class="brand-copy"><strong>تکناموز</strong><small>بکاپ و بازگردانی</small></span>
+            </a>
+            <div class="header-actions">
+                <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="تغییر تم">
+                    <svg class="icon icon-moon" aria-hidden="true"><use href="#i-moon"></use></svg>
+                    <svg class="icon icon-sun" aria-hidden="true"><use href="#i-sun"></use></svg>
+                </button>
+                <a class="back-link" href="/panel"><svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg> مرکز کنترل</a>
+            </div>
+        </header>
+
+        <section class="backup-section">
+            <div class="section-head">
+                <div>
+                    <span class="eyebrow">تکناموز / پایداری داده</span>
+                    <h2>بکاپ و بازگردانی پیکربندی</h2>
+                    <p>نقد و بررسی، دریافت و بازگردانی تمام تنظیمات، کاربران و کلیدهای API پنل.</p>
+                </div>
+            </div>
+
+            <div class="backup-grid">
+                <article class="backup-card card">
+                    <div class="backup-head">
+                        <span class="backup-icon"><svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg></span>
+                        <div>
+                            <h3>ایجاد بکاپ</h3>
+                            <p>فایل JSON کامل از تنظیمات فعلی، کاربران، کلیدهای API و اینالیتیکس را دریافت کنید.</p>
+                        </div>
+                        <button class="btn btn-primary" type="button" id="createBackup">
+                            <svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg> دریافت بکاپ
+                        </button>
+                    </div>
+                    <div class="backup-note">
+                        <span class="backup-label">شامل</span>
+                        <span class="backup-values">تنظیمات پروکسی · کاربران · کلیدهای API · آمار اشتراک</span>
+                    </div>
+                </article>
+
+                <article class="backup-card card">
+                    <div class="backup-head">
+                        <span class="backup-icon"><svg class="icon" aria-hidden="true"><use href="#i-upload"></use></svg></span>
+                        <div>
+                            <h3>بازگردانی بکاپ</h3>
+                            <p>فایل بکاپ قبلی را بارگذاری و状態 پنل را به نقطه قبلی بازگردانید.</p>
+                        </div>
+                        <div class="field">
+                            <label class="field-label" for="backupFile">فایل بکاپ (.json)</label>
+                            <input type="file" id="backupFile" accept=".json,application/json" hidden>
+                            <button class="btn btn-ghost" type="button" id="pickBackupFile">
+                                <svg class="icon" aria-hidden="true"><use href="#i-upload"></use></svg> انتخاب فایل
+                            </button>
+                            <span class="field-hint">فایل باید خروجی panels تکناموز باشد.</span>
+                        </div>
+                        <button class="btn btn-primary btn-lg" type="button" id="restoreBackup" disabled>
+                            <svg class="icon" aria-hidden="true"><use href="#i-refresh"></use></svg> بازگردانی بکاپ
+                        </button>
+                    </div>
+                </article>
+            </div>
+
+            <div class="backup-warning card">
+                <div class="backup-warning-head">
+                    <span class="eyebrow">هشدار امنیتی</span>
+                    <h3>قبل از بازگردانی</h3>
+                </div>
+                <ul class="backup-warning-list">
+                    <li><span class="check-icon"><svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg></span><span><strong>بازگردانی تنظیمات فعلی را overwrite می‌کند.</strong><small>تنظیمات فعلی جایگزین خواهد شد.</small></span></li>
+                    <li><span class="check-icon"><svg class="icon" aria-hidden="true"><use href="#i-user"></use></svg></span><span><strong>کاربران و دسترسی‌ها باز می‌گردند.</strong><small>تمام کاربران و کلیدهای API در بکاپ بازیابی می‌شوند.</small></span></li>
+                    <li><span class="check-icon"><svg class="icon" aria-hidden="true"><use href="#i-lock"></use></svg></span><span><strong>رمز عبور پنل در بکاپ شامل نیست.</strong><small>بعد از بازگردانی باید رمز عبور را دوباره تنظیم کنید.</small></span></li>
+                </ul>
+            </div>
+        </section>
+
+        <footer class="footer-note">
+            <span>تکناموز Panel <code class="mono">v__VERSION__</code></span>
+            <span>بکاپها در فرمت JSON standardization هستند</span>
+        </footer>
+    </main>
+
+    <script>__VENDOR__</script>
+    <script>__SCRIPT__</script>
+</body>
+
+</html>

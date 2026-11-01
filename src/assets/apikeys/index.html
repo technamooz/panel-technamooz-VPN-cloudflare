@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#070708">
+    <meta name="color-scheme" content="dark light">
+    <title>کلیدهای API · پنل تکناموز v__VERSION__</title>
+    <link rel="icon" href="/favicon.ico">
+    <script>__THEME_BOOT__</script>
+    __STYLE__
+</head>
+
+<body>
+    <div class="svg-sprite" aria-hidden="true">__ICONS__</div>
+
+    <main class="utility-page">
+        <header class="utility-header">
+            <a class="brand" href="/panel" aria-label="پنل تکناموز">
+                <span class="brand-mark">T<span></span></span>
+                <span class="brand-copy"><strong>تکناموز</strong><small>کلیدهای API</small></span>
+            </a>
+            <div class="header-actions">
+                <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="تغییر تم">
+                    <svg class="icon icon-moon" aria-hidden="true"><use href="#i-moon"></use></svg>
+                    <svg class="icon icon-sun" aria-hidden="true"><use href="#i-sun"></use></svg>
+                </button>
+                <button class="btn btn-primary btn-sm" type="button" id="openAddKey">
+                    <svg class="icon" aria-hidden="true"><use href="#i-key"></use></svg> کلید جدید
+                </button>
+                <a class="back-link" href="/panel"><svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg> مرکز کنترل</a>
+            </div>
+        </header>
+
+        <section class="apikeys-section">
+            <div class="section-head">
+                <div>
+                    <span class="eyebrow">تکناموز / دسترسی برنامه‌نویسی</span>
+                    <h2>مدیریت کلیدهای API</h2>
+                    <p>کلیدها برای فراخوانی ایمن endpointهای مدیریتی پنل از طریق درخواست‌های HTTP.</p>
+                </div>
+            </div>
+
+            <div class="api-note card">
+                <div class="api-note-head">
+                    <span class="eyebrow">نحوه استفاده</span>
+                    <h3>درخواست احراز هویت</h3>
+                </div>
+                <div class="api-code">
+                    <code class="mono">GET /panel/users<br>Authorization: Bearer &lt;کلید&gt;<br>X-API-Key: tk_...</code>
+                </div>
+                <div class="api-hint">
+                    هر کلید یکسابقی <code class="mono">tk_</code> دارد، قابلیت لغو فعال/غیرفعال و انقضای زمانی را پشتیبانی می‌کند.
+                </div>
+            </div>
+
+            <div class="table-wrap">
+                <table id="keysTable">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">نام کلید</th>
+                            <th scope="col">مقدار کلید</th>
+                            <th scope="col">محدوددustries</th>
+                            <th scope="col">فعال</th>
+                            <th scope="col">تاریخ ایجاد</th>
+                            <th scope="col" class="col-action">عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="keysTableBody">
+                        <tr class="state-row">
+                            <td colspan="7">
+                                <span class="state-mark"><svg class="icon spin" aria-hidden="true"><use href="#i-refresh"></use></svg></span>
+                                <span><strong>بارگذاری کلیدها…</strong><small>از gespeichert لبه استخراج می‌شود.</small></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Add Key Modal -->
+        <div class="modal" id="addKeyModal" aria-hidden="true">
+            <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="addKeyTitle">
+                <div class="modal-icon"><svg class="icon" aria-hidden="true"><use href="#i-key"></use></svg></div>
+                <div class="modal-head">
+                    <div>
+                        <h2 id="addKeyTitle">ایجاد کلید API جدید</h2>
+                        <p>اسم،무리tty و plazo انقضا را تعریف کنید.</p>
+                    </div>
+                    <button class="modal-close" type="button" data-modal-close aria-label="بستن"><svg class="icon" aria-hidden="true"><use href="#i-x"></use></svg></button>
+                </div>
+                <form id="addKeyForm" class="modal-body" novalidate>
+                    <div class="field">
+                        <label class="field-label" for="newKeyName">نام کلید <span class="muted">*</span></label>
+                        <input class="input" type="text" id="newKeyName" name="name" autocomplete="off" spellcheck="false" required placeholder="my-production-key">
+                    </div>
+                    <div class="field">
+                        <label class="field-label" for="newKeyScopes">محدوده دسترسی (scopes)</label>
+                        <select class="select" id="newKeyScopes" name="scopes" multiple size="4">
+                            <option value="read">خواندن (read)</option>
+                            <option value="write">نوشتن (write)</option>
+                            <option value="admin">مدیریت کامل (admin)</option>
+                        </select>
+                        <span class="field-hint">کلیک چندگانه برای انتخاب بیش از یک محدوده.</span>
+                    </div>
+                    <div class="field switch-field">
+                        <span class="field-label">تنظیمات پیشرفته</span>
+                        <label class="switch" for="newKeyActive">
+                            <input type="checkbox" id="newKeyActive" name="isActive" checked>
+                            <span class="switch-track"></span>
+                            <span class="switch-copy"><strong>فعال</strong><small>کلید در حال حاضر قابل استفاده است.</small></span>
+                        </label>
+                    </div>
+                    <div class="field">
+                        <label class="field-label" for="newKeyExpires">تاریخ انقضاء (اختیاری)</label>
+                        <input class="input" type="datetime-local" id="newKeyExpires" name="expiresAt">
+                        <span class="field-hint">خالی بگذارید برای کلید دائمی.</span>
+                    </div>
+                    <div class="form-error" id="addKeyError" role="alert"></div>
+                    <div class="modal-foot">
+                        <button class="btn btn-ghost" type="button" data-modal-close>لغو</button>
+                        <button class="btn btn-primary" type="submit">ایجاد کلید</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Key Reveal Modal -->
+        <div class="modal" id="revealKeyModal" aria-hidden="true">
+            <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="revealKeyTitle">
+                <div class="modal-icon"><svg class="icon" aria-hidden="true"><use href="#i-key"></use></svg></div>
+                <div class="modal-head">
+                    <div>
+                        <h2 id="revealKeyTitle">مقدار کلید API</h2>
+                        <p>این مقدار فقط یکبار نمایش داده می‌شود. آن را در محیط امن ذخیره کنید.</p>
+                    </div>
+                    <button class="modal-close" type="button" data-modal-close aria-label="بستن"><svg class="icon" aria-hidden="true"><use href="#i-x"></use></svg></button>
+                </div>
+                <div class="modal-body">
+                    <div class="field">
+                        <label class="field-label" for="revealKeyValue">مقدار کلید</label>
+                        <div class="password-wrapper">
+                            <input class="input mono" type="text" id="revealKeyValue" readonly spellcheck="false">
+                            <button class="icon-btn" type="button" id="copyKeyValue" aria-label="کپی مقدار"><svg class="icon" aria-hidden="true"><use href="#i-copy"></use></svg></button>
+                        </div>
+                    </div>
+                    <div class="form-error" id="revealKeyError" role="alert"></div>
+                    <div class="modal-foot">
+                        <button class="btn btn-primary" type="button" data-modal-close>فهمیدم و ذخیره کردم</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer-note">
+            <span>تکناموز Panel <code class="mono">v__VERSION__</code></span>
+            <span>کلیدها در KV کدگذاری شده ذخیره می‌شوند</span>
+        </footer>
+    </main>
+
+    <script>__VENDOR__</script>
+    <script>__SCRIPT__</script>
+</body>
+
+</html>

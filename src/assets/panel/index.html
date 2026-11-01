@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#070708">
+    <meta name="color-scheme" content="dark light">
+    <title>Technamooz Panel v__VERSION__</title>
+    <link rel="icon" href="/favicon.ico">
+    <script>__THEME_BOOT__</script>
+    __STYLE__
+</head>
+
+<body>
+    <div class="svg-sprite" aria-hidden="true">__ICONS__</div>
+
+    <div class="app-shell">
+        <div class="sidebar-backdrop" id="sidebarBackdrop" aria-hidden="true"></div>
+
+        <aside class="sidebar" id="sidebar" aria-label="Primary navigation">
+            <div class="sidebar-brand">
+                <a class="brand" href="#overview" data-view-target="overview" aria-label="Technamooz control center">
+                    <span class="brand-mark">T<span></span></span>
+                    <span class="brand-copy"><strong>Technamooz</strong><small>Control center</small></span>
+                </a>
+                <button class="icon-btn sidebar-close" id="sidebarClose" type="button" aria-label="Close navigation">
+                    <svg class="icon" aria-hidden="true"><use href="#i-x"></use></svg>
+                </button>
+            </div>
+
+            <div class="workspace-chip">
+                <span class="status-dot"></span>
+                <span><strong>Production</strong><small>Cloudflare edge</small></span>
+                <span class="badge badge-accent">Live</span>
+            </div>
+
+            <nav class="side-nav">
+                <span class="nav-caption">Overview</span>
+                <button class="nav-link is-active" type="button" data-view-target="overview">
+                    <svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg>
+                    <span>Dashboard</span>
+                </button>
+
+                <span class="nav-caption">Workspace</span>
+                <button class="nav-link" type="button" data-view-target="configuration">
+                    <svg class="icon" aria-hidden="true"><use href="#i-sliders"></use></svg>
+                    <span>Configuration</span>
+                    <span class="nav-dot" id="configDirtyDot" hidden></span>
+                </button>
+                <button class="nav-link" type="button" data-view-target="routing">
+                    <svg class="icon" aria-hidden="true"><use href="#i-route"></use></svg>
+                    <span>Routing rules</span>
+                </button>
+                <button class="nav-link" type="button" data-view-target="subscriptions">
+                    <svg class="icon" aria-hidden="true"><use href="#i-share"></use></svg>
+                    <span>Subscriptions</span>
+                </button>
+
+                <span class="nav-caption">System</span>
+                <button class="nav-link" type="button" data-view-target="network">
+                    <svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg>
+                    <span>Network tools</span>
+                </button>
+                <button class="nav-link" type="button" data-view-target="security">
+                    <svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg>
+                    <span>Security</span>
+                </button>
+
+                <span class="nav-caption">نظارت</span>
+                <a class="nav-link" href="/analytics">
+                    <svg class="icon" aria-hidden="true"><use href="#i-activity"></use></svg>
+                    <span>تحلیلات</span>
+                </a>
+                <a class="nav-link" href="/health">
+                    <svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg>
+                    <span>سلامت سیستم</span>
+                </a>
+                <span class="nav-caption">مدیریت</span>
+                <a class="nav-link" href="/users">
+                    <svg class="icon" aria-hidden="true"><use href="#i-user"></use></svg>
+                    <span>کاربران</span>
+                </a>
+                <a class="nav-link" href="/apikeys">
+                    <svg class="icon" aria-hidden="true"><use href="#i-key"></use></svg>
+                    <span>کلیدهای API</span>
+                </a>
+                <a class="nav-link" href="/backup">
+                    <svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg>
+                    <span>بکاپ و بازگردانی</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="system-status">
+                    <span class="status-dot"></span>
+                    <div><strong>Edge online</strong><small>Workers &amp; KV responding</small></div>
+                </div>
+                <div class="sidebar-version"><span>Technamooz Panel</span><code>v__VERSION__</code></div>
+            </div>
+        </aside>
+
+        <div class="app-body">
+            <header class="topbar">
+                <div class="topbar-start">
+                    <button class="icon-btn menu-button" id="sidebarToggle" type="button" aria-label="Open navigation" aria-controls="sidebar">
+                        <svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg>
+                    </button>
+                    <div class="breadcrumb">
+                        <svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg>
+                        <span>/</span>
+                        <strong id="breadcrumbLabel">Dashboard</strong>
+                    </div>
+                </div>
+
+                <div class="topbar-actions">
+                    <button class="icon-btn search-trigger" type="button" id="commandOpen" aria-label="Search panel">
+                        <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
+                        <span class="search-label">Search</span>
+                        <kbd>Ctrl K</kbd>
+                    </button>
+                    <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Toggle theme">
+                        <svg class="icon icon-moon" aria-hidden="true"><use href="#i-moon"></use></svg>
+                        <svg class="icon icon-sun" aria-hidden="true"><use href="#i-sun"></use></svg>
+                    </button>
+                    <div class="profile-wrap">
+                        <button class="profile-chip" type="button" id="profileToggle" aria-haspopup="true" aria-expanded="false">
+                            <span class="avatar">T</span>
+                            <span class="profile-name">Administrator</span>
+                            <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg>
+                        </button>
+                        <div class="profile-menu" id="profileMenu" role="menu" hidden>
+                            <div class="profile-menu-head">
+                                <span class="avatar">T</span>
+                                <div><strong>Administrator</strong><small>Panel owner</small></div>
+                            </div>
+                            <button type="button" role="menuitem" data-open-password>
+                                <svg class="icon" aria-hidden="true"><use href="#i-key"></use></svg>
+                                Change password
+                            </button>
+                            <a href="/support" role="menuitem">
+                                <svg class="icon" aria-hidden="true"><use href="#i-life"></use></svg>
+                                Support center
+                            </a>
+                            <button type="button" role="menuitem" class="danger" id="profileLogout">
+                                <svg class="icon" aria-hidden="true"><use href="#i-logout"></use></svg>
+                                Sign out
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="content">
+                <section class="view is-active" id="view-overview" data-view="overview">
+                    <article class="hero card depth">
+                        <div class="hero-copy">
+                            <span class="eyebrow">Control plane / Overview</span>
+                            <h1>Your connection,<br><em>beautifully managed.</em></h1>
+                            <p>Configure protocols, shape routing and deliver clean subscription profiles from one focused workspace at the edge.</p>
+                            <div class="hero-actions">
+                                <button class="btn btn-primary" type="button" data-view-target="configuration">
+                                    <svg class="icon" aria-hidden="true"><use href="#i-sliders"></use></svg>
+                                    Configure panel
+                                </button>
+                                <button class="btn btn-ghost" type="button" data-view-target="subscriptions">
+                                    <svg class="icon" aria-hidden="true"><use href="#i-share"></use></svg>
+                                    Delivery center
+                                </button>
+                            </div>
+                            <div class="hero-meta">
+                                <span class="live-status"><span class="status-dot"></span> Workspace operational</span>
+                                <span class="mono">v__VERSION__</span>
+                            </div>
+                        </div>
+                        <div class="hero-panel" aria-hidden="true">
+                            <div class="signal-card depth hover-lift">
+                                <div class="signal-ring">
+                                    <span class="signal-core">T</span>
+                                    <span class="signal-orbit"></span>
+                                </div>
+                                <div class="signal-copy">
+                                    <span class="badge badge-success"><span class="status-dot"></span> Edge ready</span>
+                                    <strong>Technamooz node</strong>
+                                    <small>Cloudflare Workers · KV storage</small>
+                                </div>
+                            </div>
+                            <div class="signal-stats">
+                                <div><span>Protocols</span><strong id="heroProtocols">—</strong></div>
+                                <div><span>Ports</span><strong id="heroPorts">—</strong></div>
+                                <div><span>WARP</span><strong id="heroWarp">—</strong></div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <div class="setup-banner" id="setupBanner" hidden>
+                        <span class="setup-icon"><svg class="icon" aria-hidden="true"><use href="#i-lock"></use></svg></span>
+                        <div><strong>Your panel is not password protected yet.</strong><p>Set a strong password before sharing or using this deployment.</p></div>
+                        <button class="btn btn-primary btn-sm" type="button" data-open-password>Set password</button>
+                    </div>
+
+                    <div class="metric-grid">
+                        <article class="metric-card card depth">
+                            <div class="metric-top"><span>Workspace</span><span class="metric-icon success"><svg class="icon" aria-hidden="true"><use href="#i-activity"></use></svg></span></div>
+                            <strong class="metric-value">Operational</strong>
+                            <p>Workers runtime and KV storage are available.</p>
+                            <span class="metric-foot"><span class="status-dot"></span> All systems normal</span>
+                        </article>
+                        <article class="metric-card card depth">
+                            <div class="metric-top"><span>Protocols</span><span class="metric-icon"><svg class="icon" aria-hidden="true"><use href="#i-layers"></use></svg></span></div>
+                            <strong class="metric-value" id="metricProtocols">—</strong>
+                            <p id="metricProtocolsHint">Waiting for configuration</p>
+                            <button class="metric-foot link" type="button" data-view-target="configuration" data-config-target="vless">Manage <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></button>
+                        </article>
+                        <article class="metric-card card depth">
+                            <div class="metric-top"><span>Enabled ports</span><span class="metric-icon"><svg class="icon" aria-hidden="true"><use href="#i-server"></use></svg></span></div>
+                            <strong class="metric-value" id="metricPorts">—</strong>
+                            <p id="metricPortsHint">TLS and non-TLS listeners</p>
+                            <button class="metric-foot link" type="button" data-view-target="configuration" data-config-target="vless">Inspect <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></button>
+                        </article>
+                        <article class="metric-card card depth">
+                            <div class="metric-top"><span>Delivery profiles</span><span class="metric-icon"><svg class="icon" aria-hidden="true"><use href="#i-share"></use></svg></span></div>
+                            <strong class="metric-value" id="metricProfiles">—</strong>
+                            <p>Cores and client formats ready to share.</p>
+                            <button class="metric-foot link" type="button" data-view-target="subscriptions">Open <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></button>
+                        </article>
+                    </div>
+
+                    <div class="overview-grid">
+                        <article class="overview-card card depth">
+                            <div class="overview-head">
+                                <div><span class="eyebrow">Snapshot</span><h2>Profile at a glance</h2></div>
+                                <span class="badge">Live config</span>
+                            </div>
+                            <dl class="snapshot-list">
+                                <div><dt>Hostname</dt><dd class="mono" id="snapHost">—</dd></div>
+                                <div><dt>Subscription path</dt><dd class="mono"><span id="snapSubPath">—</span><button class="inline-copy" type="button" data-copy-target="snapSubPath" aria-label="Copy subscription path"><svg class="icon" aria-hidden="true"><use href="#i-copy"></use></svg></button></dd></div>
+                                <div><dt>Remote DNS</dt><dd class="mono" id="snapDns">—</dd></div>
+                                <div><dt>Proxy IP mode</dt><dd id="snapProxyMode">—</dd></div>
+                                <div><dt>IPv6</dt><dd id="snapIpv6">—</dd></div>
+                                <div><dt>WARP endpoints</dt><dd id="snapWarp">—</dd></div>
+                            </dl>
+                            <button class="btn btn-ghost btn-sm overview-action" type="button" data-view-target="configuration">
+                                <svg class="icon" aria-hidden="true"><use href="#i-sliders"></use></svg> Open configuration
+                            </button>
+                        </article>
+
+                        <article class="overview-card card depth">
+                            <div class="overview-head">
+                                <div><span class="eyebrow">Shortcuts</span><h2>Quick actions</h2></div>
+                            </div>
+                            <div class="quick-list">
+                                <button type="button" class="quick-row" data-view-target="subscriptions" data-sub-action="copy-normal">
+                                    <span class="quick-icon"><svg class="icon" aria-hidden="true"><use href="#i-copy"></use></svg></span>
+                                    <span><strong>Copy normal subscription</strong><small>Xray · v2rayNG · MahsaNG</small></span>
+                                    <svg class="icon quick-arrow" aria-hidden="true"><use href="#i-chevron-right"></use></svg>
+                                </button>
+                                <button type="button" class="quick-row" data-view-target="subscriptions" data-sub-action="qr-fragment">
+                                    <span class="quick-icon"><svg class="icon" aria-hidden="true"><use href="#i-qr"></use></svg></span>
+                                    <span><strong>Scan fragment profile</strong><small>Show a QR code for mobile clients</small></span>
+                                    <svg class="icon quick-arrow" aria-hidden="true"><use href="#i-chevron-right"></use></svg>
+                                </button>
+                                <button type="button" class="quick-row" data-view-target="network" data-network-action="refresh">
+                                    <span class="quick-icon"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></span>
+                                    <span><strong>Check network identity</strong><small>Resolve Cloudflare and direct IPs</small></span>
+                                    <svg class="icon quick-arrow" aria-hidden="true"><use href="#i-chevron-right"></use></svg>
+                                </button>
+                                <button type="button" class="quick-row" data-view-target="security">
+                                    <span class="quick-icon"><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg></span>
+                                    <span><strong>Review security</strong><small>Password, sessions and hardening</small></span>
+                                    <svg class="icon quick-arrow" aria-hidden="true"><use href="#i-chevron-right"></use></svg>
+                                </button>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="view" id="view-configuration" data-view="configuration">
+                    <div class="view-head">
+                        <div>
+                            <span class="eyebrow">Workspace / Settings</span>
+                            <h1>Configuration</h1>
+                            <p>Every value is validated and stored safely before it reaches your subscription generators.</p>
+                        </div>
+                        <div class="view-head-actions">
+                            <button class="btn btn-ghost btn-sm" type="button" id="exportSettingsBtn">
+                                <svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg> Export
+                            </button>
+                            <button class="btn btn-ghost btn-sm" type="button" id="importSettingsBtn">
+                                <svg class="icon" aria-hidden="true"><use href="#i-upload"></use></svg> Import
+                            </button>
+                            <input type="file" id="fileInput" accept=".dat,.json,application/json" hidden>
+                        </div>
+                    </div>
+
+                    <nav class="config-tabs" id="configTabs" aria-label="Configuration sections">
+                        <button class="config-tab is-active" type="button" data-config-tab="common">Common</button>
+                        <button class="config-tab" type="button" data-config-tab="vless">VLESS &amp; Trojan</button>
+                        <button class="config-tab" type="button" data-config-tab="fragment">Fragment</button>
+                        <button class="config-tab" type="button" data-config-tab="routing">Routing</button>
+                        <button class="config-tab" type="button" data-config-tab="external">External</button>
+                        <button class="config-tab" type="button" data-config-tab="warp">WARP</button>
+                        <button class="config-tab" type="button" data-config-tab="warp-pro">WARP Pro</button>
+                    </nav>
+
+                    <form id="configForm" class="config-form" novalidate>
+                        <section class="config-panel card depth glass-pane accent-rim is-active" data-config-panel="common">
+                            <div class="panel-heading">
+                                <span class="panel-icon"><svg class="icon" aria-hidden="true"><use href="#i-sliders"></use></svg></span>
+                                <div><span class="eyebrow">Foundation</span><h2>Common settings</h2><p>DNS foundations and runtime behaviour shared by every generated profile.</p></div>
+                            </div>
+                            <div class="form-grid">
+                                <div class="field">
+                                    <label class="field-label" for="localDNS">Local DNS
+                                        <a class="help" href="https://technamooz.github.io/technamooz-panel/configuration/common/" target="_blank" rel="noopener" aria-label="Local DNS help"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg></a>
+                                    </label>
+                                    <input class="input" type="text" id="localDNS" name="localDNS" autocomplete="off" spellcheck="false" placeholder="8.8.8.8" required>
+                                    <span class="field-hint">IPv4 address or <code class="mono">localhost</code> used for local resolution.</span>
+                                </div>
+                                <div class="field">
+                                    <label class="field-label" for="antiSanctionDNS">Anti-sanction DNS</label>
+                                    <input class="input" type="text" id="antiSanctionDNS" name="antiSanctionDNS" autocomplete="off" spellcheck="false" placeholder="178.22.122.100" required>
+                                    <span class="field-hint">DNS endpoint used for sanctioned services.</span>
+                                </div>
+                                <div class="field">
+                                    <label class="field-label" for="logLevel">Log level</label>
+                                    <select class="select" id="logLevel" name="logLevel">
+                                        <option value="none">Disabled</option>
+                                        <option value="warning">Warning</option>
+                                        <option value="error">Error</option>
+                                        <option value="info">Info</option>
+                                        <option value="debug">Debug</option>
+                                    </select>
+                                    <span class="field-hint">Controls verbosity inside generated core configs.</span>
+                                </div>
+                                <div class="field switch-field">
+                                    <span class="field-label">Runtime toggles</span>
+                                    <label class="switch" for="fakeDNS">
+                                        <input type="checkbox" id="fakeDNS" name="fakeDNS">
+                                        <span class="switch-track"></span>
+                                        <span class="switch-copy"><strong>Fake DNS</strong><small>Faster domain resolution in capable clients</small></span>
+                                    </label>
+                                    <label class="switch" for="enableIPv6">
+                                        <input type="checkbox" id="enableIPv6" name="enableIPv6">
+                                        <span class="switch-track"></span>
+                                        <span class="switch-copy"><strong>IPv6 support</strong><small>Publish AAAA records and IPv6 endpoints</small></span>
+                                    </label>
+                                    <label class="switch" for="allowLANConnection">
+                                        <input type="checkbox" id="allowLANConnection" name="allowLANConnection">
+                                        <span class="switch-track"></span>
+                                        <span class="switch-copy"><strong>Allow LAN</strong><small>Accept connections from your local network</small></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="config-panel card depth glass-pane" data-config-panel="vless" hidden>
+                            <div class="panel-heading">
+                                <span class="panel-icon"><svg class="icon" aria-hidden="true"><use href="#i-layers"></use></svg></span>
+                                <div><span class="eyebrow">Core profiles</span><h2>VLESS &amp; Trojan</h2><p>Listener ports, DNS routing, CDN identity and protocol-specific transport options.</p></div>
+                            </div>
+
+                            <div class="form-grid">
+                                <div class="field span-2">
+                                    <label class="field-label" for="remoteDNS">Remote DNS
+                                        <a class="help" href="https://technamooz.github.io/technamooz-panel/configuration/vless-trojan/" target="_blank" rel="noopener" aria-label="Remote DNS help"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg></a>
+                                    </label>
+                                    <input class="input" type="text" id="remoteDNS" name="remoteDNS" autocomplete="off" spellcheck="false" placeholder="https://8.8.8.8/dns-query" required>
+                                    <span class="field-hint">DoH, DoT or TCP DNS. Cloudflare DNS is intentionally rejected for Worker deployments.</span>
+                                </div>
+                                <div class="field">
+                                    <label class="field-label" for="upstreamProxy">Upstream TCP proxy</label>
+                                    <input class="input" type="text" id="upstreamProxy" name="upstreamProxy" autocomplete="off" spellcheck="false" placeholder="host:port">
+                                    <span class="field-hint">Optional TCP relay placed in front of worker traffic.</span>
+                                </div>
+                                <div class="field span-2">
+                                    <label class="field-label" for="outProxy">Chain proxy</label>
+                                    <input class="input" type="text" id="outProxy" name="outProxy" autocomplete="off" spellcheck="false" placeholder="socks://user:pass@host:port">
+                                    <span class="field-hint">Optional outbound chain: HTTP, SOCKS, Shadowsocks, VLESS, VMess or Trojan.</span>
+                                </div>
+                                <div class="field span-2">
+                                    <label class="field-label" for="cleanIPs">Clean IPs / domains
+                                        <a class="help" href="https://github.com/technamooz/technamooz-clean-ip-scanner" target="_blank" rel="noopener" aria-label="Clean IP scanner"><svg class="icon" aria-hidden="true"><use href="#i-external"></use></svg></a>
+                                    </label>
+                                    <textarea class="textarea" id="cleanIPs" name="cleanIPs" rows="3" spellcheck="false" placeholder="One entry per line"></textarea>
+                                    <span class="field-hint">Leave empty to use the Worker hostname. Each line is one address or domain.</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-label">Enabled protocols</span>
+                                    <div class="check-grid">
+                                        <label class="check-card" for="VLConfigs">
+                                            <input type="checkbox" id="VLConfigs" name="VLConfigs">
+                                            <span class="check-mark"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>
+                                            VLESS
+                                        </label>
+                                        <label class="check-card" for="TRConfigs">
+                                            <input type="checkbox" id="TRConfigs" name="TRConfigs">
+                                            <span class="check-mark"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>
+                                            Trojan
+                                        </label>
+                                    </div>
+                                    <span class="field-hint">At least one protocol must remain enabled.</span>
+                                </div>
+                                <div class="field">
+                                    <label class="field-label" for="fingerprint">Fingerprint</label>
+                                    <select class="select" id="fingerprint" name="fingerprint">
+                                        <option value="chrome">Chrome</option>
+                                        <option value="firefox">Firefox</option>
+                                        <option value="safari">Safari</option>
+                                        <option value="ios">iOS</option>
+                                        <option value="android">Android</option>
+                                        <option value="edge">Edge</option>
+                                        <option value="360">360</option>
+                                        <option value="qq">QQ</option>
+                                        <option value="random">Random</option>
+                                        <option value="randomized">Randomized</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label class="field-label" for="bestVLTRInterval">Best ping interval</label>
+                                    <input class="input" type="number" id="bestVLTRInterval" name="bestVLTRInterval" min="10" max="3600" placeholder="30">
+                                    <span class="field-hint">Seconds between health checks in best-ping groups.</span>
+                                </div>
+                                <div class="field switch-field">
+                                    <span class="field-label">Transport</span>
+                                    <label class="switch" for="enableTFO">
+                                        <input type="checkbox" id="enableTFO" name="enableTFO">
+                                        <span class="switch-track"></span>
+                                        <span class="switch-copy"><strong>TCP Fast Open</strong><small>Reduce handshake latency where supported</small></span>
+                                    </label>
+                                </div>
+                                <div class="field span-2">
+                                    <span class="field-label">Listener ports</span>
+                                    <div class="port-group">
+                                        <span class="port-label">TLS</span>
+                                        <div id="tls-ports" class="check-grid"></div>
+                                    </div>
+                                    <div class="port-group" id="none-tls-field" hidden>
+                                        <span class="port-label">Non-TLS</span>
+                                        <div id="non-tls-ports" class="check-grid"></div>
+                                    </div>
+                                    <span class="field-hint">At least one TLS port is required. Non-TLS ports are only available on custom domains.</span>
+                                </div>
+                            </div>
+
+                            <div class="sub-panel">
+                                <div class="sub-panel-head">
+                                    <div><span class="eyebrow">Privacy</span><h3>Encrypted Client Hello</h3></div>
+                                    <label class="switch" for="enableECH">
+                                        <input type="checkbox" id="enableECH" name="enableECH">
+                                        <span class="switch-track"></span>
+                                        <span class="switch-copy"><strong>ECH</strong><small>Hide the requested server name</small></span>
+                                    </label>
+                                </div>
+                                <div class="form-grid">
+                                    <div class="field">
+                                        <label class="field-label" for="echServerName">ECH server name</label>
+                                        <input class="input" type="text" id="echServerName" name="echServerName" autocomplete="off" spellcheck="false" placeholder="Optional public name">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sub-panel">
+                                <div class="sub-panel-head">
+                                    <div><span class="eyebrow">Fallback path</span><h3>Proxy IP &amp; NAT64</h3></div>
+                                    <a class="btn btn-quiet btn-sm" href="/proxy-ip" target="_blank" rel="noopener">
+                                        <svg class="icon" aria-hidden="true"><use href="#i-external"></use></svg> Directory
+                                    </a>
+                                </div>
+                                <div class="form-grid">
+                                    <div class="field">
+                                        <label class="field-label" for="proxyIPMode">Fallback mode</label>
+                                        <select class="select" id="proxyIPMode" name="proxyIPMode">
+                                            <option value="proxyip">Proxy IP</option>
+                                            <option value="prefix">NAT64 prefix</option>
+                                        </select>
+                                    </div>
+                                    <div class="field">
+                                        <label class="field-label" for="proxyIPs">Proxy IPs / domains</label>
+                                        <textarea class="textarea" id="proxyIPs" name="proxyIPs" rows="3" spellcheck="false" placeholder="One entry per line"></textarea>
+                                    </div>
+                                    <div class="field span-2">
+                                        <label class="field-label" for="prefixes">NAT64 prefixes
+                                            <a class="help" href="https://github.com/technamooz/technamooz-panel/blob/main/docs/NAT64Prefixes.md" target="_blank" rel="noopener" aria-label="NAT64 prefixes"><svg class="icon" aria-hidden="true"><use href="#i-external"></use></svg></a>
+                                        </label>
+                                        <textarea class="textarea" id="prefixes" name="prefixes" rows="2" spellcheck="false" placeholder="[2a02:898:146:64::]"></textarea>
+                                        <span class="field-hint">Each prefix must be enclosed in square brackets.</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sub-panel">
+                                <div class="sub-panel-head">
+                                    <div><span class="eyebrow">Custom identity</span><h3>Custom CDN</h3></div>
+                                </div>
+                                <div class="form-grid">
+                                    <div class="field">
+                                        <label class="field-label" for="customCdnAddrs">Addresses</label>
+                                        <textarea class="textarea" id="customCdnAddrs" name="customCdnAddrs" rows="2" spellcheck="false" placeholder="One address per line"></textarea>
+                                    </div>
+                                    <div class="field">
+                                        <label class="field-label" for="customCdnHost">Host header</label>
+                                        <input class="input" type="text" id="customCdnHost" name="customCdnHost" autocomplete="off" spellcheck="false" placeholder="cdn.example.com">
+                                        <label class="field-label cdn-sni" for="customCdnSni">SNI</label>
+                                        <input class="input" type="text" id="customCdnSni" name="customCdnSni" autocomplete="off" spellcheck="false" placeholder="cdn.example.com">
+                                    </div>
+                                    <span class="field-hint span-2">All three custom CDN fields must be filled together, or left empty together.</span>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="config-panel card depth glass-pane" data-config-panel="fragment" hidden>
+                            <div class="panel-heading">
+                                <span class="panel-icon"><svg class="icon" aria-hidden="true"><use href="#i-zap"></use></svg></span>
+                                <div><span class="eyebrow">DPI resistance</span><h2>Xray fragment</h2><p>Shape the first TLS packets to make fingerprinting harder on restrictive networks.</p></div>
+                            </div>
+                            <div class="form-grid">
+                                <div class="field">
+                                    <label class="field-label" for="fragmentMode">Preset mode</label>
+                                    <select class="select" id="fragmentMode" name="fragmentMode">
+                                        <option value="custom">Custom</option>
+                                        <option value="low">Low</option>
+                                        <option value="medium">Medium</option>
+                                        <option value="high">High</option>
+                                        <option value="severe">Severe</option>
+                                    </select>
+                                    <span class="field-hint">Presets fill the range fields below; custom unlocks manual editing.</span>
+                                </div>
+                                <div class="field">
+                                    <label class="field-label" for="fragmentPackets">Packets</label>
+                                    <select class="select" id="fragmentPackets" name="fragmentPackets">
+                                        <option value="tlshello">tlshello</option>
+                                        <option value="1-1">1-1</option>
+                                        <option value="1-2">1-2</option>
+                                        <option value="1-3">1-3</option>
+                                        <option value="1-5">1-5</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label class="field-label" for="fragmentLengthMin">Length range</label>
+                                    <div class="range-pair">
+                                        <input class="input" type="number" id="fragmentLengthMin" name="fragmentLengthMin" min="1" max="500" required>
+                                        <span class="range-sep">—</span>
+                                        <input class="input" type="number" id="fragmentLengthMax" name="fragmentLengthMax" min="1" max="500" required>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label class="field-label" for="fragmentIntervalMin">Interval range</label>
+                                    <div class="range-pair">
+                                        <input class="input" type="number" id="fragmentIntervalMin" name="fragmentIntervalMin" min="1" max="60" required>
+                                        <span class="range-sep">—</span>
+                                        <input class="input" type="number" id="fragmentIntervalMax" name="fragmentIntervalMax" min="1" max="60" required>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label class="field-label" for="fragmentMaxSplitMin">Max split range</label>
+                                    <div class="range-pair">
+                                        <input class="input" type="number" id="fragmentMaxSplitMin" name="fragmentMaxSplitMin" min="2" max="100" placeholder="auto">
+                                        <span class="range-sep">—</span>
+                                        <input class="input" type="number" id="fragmentMaxSplitMax" name="fragmentMaxSplitMax" min="2" max="100" placeholder="auto">
+                                    </div>
+                                    <span class="field-hint">Optional. Leave both empty to let Xray decide.</span>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="config-panel card depth glass-pane" data-config-panel="routing" hidden>
+                            <div class="panel-heading">
+                                <span class="panel-icon"><svg class="icon" aria-hidden="true"><use href="#i-route"></use></svg></span>
+                                <div><span class="eyebrow">Traffic policy</span><h2>Routing rules</h2><p>Decide which traffic stays local, which services are blocked and what is routed through the proxy.</p></div>
+                            </div>
+                            <div class="sub-panel">
+                                <div class="sub-panel-head"><div><h3>Preset bypass</h3><p class="sub-panel-desc">Local DNS routes for regional traffic.</p></div></div>
+                                <div class="check-grid">
+                                    <label class="check-card" for="bypassIran"><input type="checkbox" id="bypassIran" name="bypassIran"><span class="check-mark"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>Iran</label>
+                                    <label class="check-card" for="bypassChina"><input type="checkbox" id="bypassChina" name="bypassChina"><span class="check-mark"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>China</label>
+                                    <label class="check-card" for="bypassRussia"><input type="checkbox" id="bypassRussia" name="bypassRussia"><span class="check-mark"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>Russia</label>
+                                </div>
+                            </div>
+                            <div class="sub-panel">
+                                <div class="sub-panel-head"><div><h3>Preset blocking</h3><p class="sub-panel-desc">Geosite-based blocking lists.</p></div></div>
+                                <div class="check-grid">
+                                    <label class="check-card" for="blockAds"><input type="checkbox" id="blockAds" name="blockAds"><span class="check-mark"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>Ads</label>
+                                    <label class="check-card" for="blockPorn"><input type="checkbox" id="blockPorn" name="blockPorn"><span class="check-mark"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>Adult content</label>
+                                    <label class="check-card" for="blockUDP443"><input type="checkbox" id="blockUDP443" name="blockUDP443"><span class="check-mark"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>QUIC / UDP 443</label>
+                                    <label class="check-card" for="blockMalware"><input type="checkbox" id="blockMalware" name="blockMalware"><span class="check-mark"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>Malware</label>
+                                    <label class="check-card" for="blockPhishing"><input type="checkbox" id="blockPhishing" name="blockPhishing"><span class="check-mark"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>Phishing</label>
+                                    <label class="check-card" for="blockCryptominers"><input type="checkbox" id="blockCryptominers" name="blockCryptominers"><span class="check-mark"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>Cryptominers</label>
+                                </div>
+                                <span class="field-hint">Malware, phishing and cryptominer rules require current geosite assets in the client.</span>
+                            </div>
+                            <div class="sub-panel">
+                                <div class="sub-panel-head"><div><h3>Custom rules</h3><p class="sub-panel-desc">One IP, CIDR or domain per line.</p></div></div>
+                                <div class="form-grid">
+                                    <div class="field">
+                                        <label class="field-label" for="customBypassRules">Bypass IPs / domains</label>
+                                        <textarea class="textarea" id="customBypassRules" name="customBypassRules" rows="3" spellcheck="false"></textarea>
+                                    </div>
+                                    <div class="field">
+                                        <label class="field-label" for="customBlockRules">Block IPs / domains</label>
+                                        <textarea class="textarea" id="customBlockRules" name="customBlockRules" rows="3" spellcheck="false"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub-panel">
+                                <div class="sub-panel-head"><div><h3>Sanction bypass</h3><p class="sub-panel-desc">Services that should resolve through the anti-sanction DNS.</p></div></div>
+                                <div class="check-grid">
+                                    <label class="check-card" for="bypassOpenAi"><input type="checkbox" id="bypassOpenAi" name="bypassOpenAi"><span class="check-mark"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>ChatGPT</label>
+                                    <label class="check-card" for="bypassGoogleAi"><input type="checkbox" id="bypassGoogleAi" name="bypassGoogleAi"><span class="check-mark"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>Google AI</label>
+                                    <label class="check-card" for="bypassMicrosoft"><input type="checkbox" id="bypassMicrosoft" name="bypassMicrosoft"><span class="check-mark"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>Microsoft</label>
+                                    <label class="check-card" for="bypassOracle"><input type="checkbox" id="bypassOracle" name="bypassOracle"><span class="check-mark"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>Oracle</label>
+                                    <label class="check-card" for="bypassDocker"><input type="checkbox" id="bypassDocker" name="bypassDocker"><span class="check-mark"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>Docker</label>
+                                    <label class="check-card" for="bypassAdobe"><input type="checkbox" id="bypassAdobe" name="bypassAdobe"><span class="check-mark"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>Adobe</label>
+                                    <label class="check-card" for="bypassEpicGames"><input type="checkbox" id="bypassEpicGames" name="bypassEpicGames"><span class="check-mark"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>Epic Games</label>
+                                    <label class="check-card" for="bypassIntel"><input type="checkbox" id="bypassIntel" name="bypassIntel"><span class="check-mark"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>Intel</label>
+                                    <label class="check-card" for="bypassAmd"><input type="checkbox" id="bypassAmd" name="bypassAmd"><span class="check-mark"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>AMD</label>
+                                    <label class="check-card" for="bypassNvidia"><input type="checkbox" id="bypassNvidia" name="bypassNvidia"><span class="check-mark"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>NVIDIA</label>
+                                    <label class="check-card" for="bypassAsus"><input type="checkbox" id="bypassAsus" name="bypassAsus"><span class="check-mark"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>ASUS</label>
+                                    <label class="check-card" for="bypassHp"><input type="checkbox" id="bypassHp" name="bypassHp"><span class="check-mark"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>HP</label>
+                                    <label class="check-card" for="bypassLenovo"><input type="checkbox" id="bypassLenovo" name="bypassLenovo"><span class="check-mark"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>Lenovo</label>
+                                </div>
+                                <div class="field custom-sanction-field">
+                                    <label class="field-label" for="customBypassSanctionRules">Custom sanction domains</label>
+                                    <textarea class="textarea" id="customBypassSanctionRules" name="customBypassSanctionRules" rows="2" spellcheck="false"></textarea>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="config-panel card depth glass-pane" data-config-panel="external" hidden>
+                            <div class="panel-heading">
+                                <span class="panel-icon"><svg class="icon" aria-hidden="true"><use href="#i-link"></use></svg></span>
+                                <div><span class="eyebrow">Extend delivery</span><h2>External raw configs</h2><p>Merge outside subscription feeds or single configs into your raw subscription output.</p></div>
+                            </div>
+                            <div class="form-grid">
+                                <div class="field span-2">
+                                    <label class="field-label" for="customSubs">Subscription URLs</label>
+                                    <textarea class="textarea" id="customSubs" name="customSubs" rows="4" spellcheck="false" placeholder="https://example.com/subscription"></textarea>
+                                    <span class="field-hint">Up to 50 HTTP(S) feeds. Base64 feeds are decoded automatically.</span>
+                                </div>
+                                <div class="field span-2">
+                                    <label class="field-label" for="customConfigs">Single configs</label>
+                                    <textarea class="textarea" id="customConfigs" name="customConfigs" rows="5" spellcheck="false" placeholder="vless://...&#10;trojan://..."></textarea>
+                                    <span class="field-hint">One URI per line. Supported schemes: VLESS, Trojan, VMess, Shadowsocks, SOCKS and HTTP.</span>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="config-panel card depth glass-pane" data-config-panel="warp" hidden>
+                            <div class="panel-heading">
+                                <span class="panel-icon"><svg class="icon" aria-hidden="true"><use href="#i-cloud"></use></svg></span>
+                                <div><span class="eyebrow">Cloudflare WARP</span><h2>WARP general</h2><p>WireGuard endpoints and DNS for standard WARP and WARP-over-WARP profiles.</p></div>
+                            </div>
+                            <div class="form-grid">
+                                <div class="field">
+                                    <label class="field-label" for="warpRemoteDNS">WARP remote DNS</label>
+                                    <input class="input" type="text" id="warpRemoteDNS" name="warpRemoteDNS" autocomplete="off" spellcheck="false" placeholder="1.1.1.1" required>
+                                    <span class="field-hint">IPv4 DNS endpoint used inside the WireGuard tunnel.</span>
+                                </div>
+                                <div class="field">
+                                    <label class="field-label" for="bestWarpInterval">Best ping interval</label>
+                                    <input class="input" type="number" id="bestWarpInterval" name="bestWarpInterval" min="10" max="3600" placeholder="30">
+                                </div>
+                                <div class="field span-2">
+                                    <label class="field-label" for="warpEndpoints">Endpoints
+                                        <a class="help" href="https://github.com/technamooz/technamooz-warp-scanner" target="_blank" rel="noopener" aria-label="WARP scanner"><svg class="icon" aria-hidden="true"><use href="#i-external"></use></svg></a>
+                                    </label>
+                                    <textarea class="textarea" id="warpEndpoints" name="warpEndpoints" rows="3" spellcheck="false" placeholder="engage.cloudflareclient.com:2408" required></textarea>
+                                    <span class="field-hint">One <code class="mono">host:port</code> endpoint per line.</span>
+                                </div>
+                            </div>
+                            <div class="sub-panel warp-account-panel">
+                                <div class="sub-panel-head">
+                                    <div><h3>WARP account dataset</h3><p class="sub-panel-desc">Request a fresh pair of Cloudflare WARP registrations. Existing profiles stay active until clients refresh.</p></div>
+                                    <button class="btn btn-ghost btn-sm" type="button" id="warpUpdateBtn">
+                                        <svg class="icon" aria-hidden="true"><use href="#i-refresh"></use></svg> Refresh accounts
+                                    </button>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="config-panel card depth glass-pane" data-config-panel="warp-pro" hidden>
+                            <div class="panel-heading">
+                                <span class="panel-icon"><svg class="icon" aria-hidden="true"><use href="#i-crown"></use></svg></span>
+                                <div><span class="eyebrow">Advanced WARP</span><h2>WARP Pro noise</h2><p>Packet shaping for MahsaNG, Amnezia and the v2rayNG UDP noise engine.</p></div>
+                            </div>
+                            <div class="sub-panel">
+                                <div class="sub-panel-head"><div><h3>MahsaNG noise</h3><p class="sub-panel-desc">Applied to Xray WARP Pro / knocker profiles.</p></div></div>
+                                <div class="form-grid">
+                                    <div class="field">
+                                        <label class="field-label" for="knockerNoiseMode">Noise mode</label>
+                                        <input class="input" type="text" id="knockerNoiseMode" name="knockerNoiseMode" autocomplete="off" spellcheck="false" placeholder="quic">
+                                        <span class="field-hint"><code class="mono">none</code>, <code class="mono">quic</code>, <code class="mono">random</code> or a hex string.</span>
+                                    </div>
+                                    <div class="field">
+                                        <label class="field-label" for="noiseCountMin">Count range</label>
+                                        <div class="range-pair">
+                                            <input class="input" type="number" id="noiseCountMin" name="noiseCountMin" min="1" max="100" required>
+                                            <span class="range-sep">—</span>
+                                            <input class="input" type="number" id="noiseCountMax" name="noiseCountMax" min="1" max="100" required>
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label class="field-label" for="noiseSizeMin">Size range</label>
+                                        <div class="range-pair">
+                                            <input class="input" type="number" id="noiseSizeMin" name="noiseSizeMin" min="1" max="1500" required>
+                                            <span class="range-sep">—</span>
+                                            <input class="input" type="number" id="noiseSizeMax" name="noiseSizeMax" min="1" max="1500" required>
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label class="field-label" for="noiseDelayMin">Delay range</label>
+                                        <div class="range-pair">
+                                            <input class="input" type="number" id="noiseDelayMin" name="noiseDelayMin" min="0" max="1000" required>
+                                            <span class="range-sep">—</span>
+                                            <input class="input" type="number" id="noiseDelayMax" name="noiseDelayMax" min="0" max="1000" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub-panel">
+                                <div class="sub-panel-head"><div><h3>Clash / Amnezia noise</h3><p class="sub-panel-desc">Used by WARP Pro WireGuard configurations.</p></div></div>
+                                <div class="form-grid">
+                                    <div class="field">
+                                        <label class="field-label" for="amneziaNoiseCount">Noise count</label>
+                                        <input class="input" type="number" id="amneziaNoiseCount" name="amneziaNoiseCount" min="1" max="100" required>
+                                    </div>
+                                    <div class="field">
+                                        <label class="field-label" for="amneziaNoiseSizeMin">Noise size range</label>
+                                        <div class="range-pair">
+                                            <input class="input" type="number" id="amneziaNoiseSizeMin" name="amneziaNoiseSizeMin" min="1" max="1500" required>
+                                            <span class="range-sep">—</span>
+                                            <input class="input" type="number" id="amneziaNoiseSizeMax" name="amneziaNoiseSizeMax" min="1" max="1500" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub-panel">
+                                <div class="sub-panel-head">
+                                    <div><h3>v2rayNG / v2rayN UDP noise</h3><p class="sub-panel-desc">Each entry expands into repeated Xray UDP noise packets.</p></div>
+                                    <button class="btn btn-ghost btn-sm" type="button" id="addUdpNoiseBtn">
+                                        <svg class="icon" aria-hidden="true"><use href="#i-plus"></use></svg> Add noise
+                                    </button>
+                                </div>
+                                <div class="noise-list" id="noises"></div>
+                            </div>
+                        </section>
+                    </form>
+
+                    <div class="savebar card" id="savebar">
+                        <div class="save-state">
+                            <span class="save-dot" id="saveDot"></span>
+                            <div><strong id="saveStateLabel">All changes saved</strong><small id="saveStateHint">Settings are in sync with the edge.</small></div>
+                        </div>
+                        <div class="save-actions">
+                            <button class="btn btn-quiet btn-sm" type="button" id="resetSettingsBtn">
+                                <svg class="icon" aria-hidden="true"><use href="#i-undo"></use></svg> Reset defaults
+                            </button>
+                            <button class="btn btn-quiet btn-sm" type="button" id="cancelSettings">
+                                <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg> Discard
+                            </button>
+                            <button class="btn btn-primary" type="button" id="applyButton" disabled>
+                                <svg class="icon" aria-hidden="true"><use href="#i-save"></use></svg> Save changes
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="view" id="view-subscriptions" data-view="subscriptions">
+                    <div class="view-head">
+                        <div>
+                            <span class="eyebrow">Delivery / Subscriptions</span>
+                            <h1>Delivery center</h1>
+                            <p>Every core and client format generated from the settings above. Copy a URL, scan a QR code or download a profile.</p>
+                        </div>
+                        <div class="subpath-box">
+                            <div><span>Subscription path</span><code id="subPathValue" class="mono">—</code></div>
+                            <button class="icon-btn" type="button" id="copySubPath" aria-label="Copy subscription path" title="Copy subscription path">
+                                <svg class="icon" aria-hidden="true"><use href="#i-copy"></use></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="delivery-stats" id="deliveryStats">
+                        <div class="delivery-stat card"><span>Cores</span><strong>Xray · sing-box · Clash</strong></div>
+                        <div class="delivery-stat card"><span>Profiles</span><strong id="deliveryProfileCount">—</strong></div>
+                        <div class="delivery-stat card"><span>WARP</span><strong id="deliveryWarpCount">—</strong></div>
+                    </div>
+                    <div class="subscription-grid" id="subscriptionGrid"></div>
+                    <div class="delivery-note card depth">
+                        <span class="panel-icon"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg></span>
+                        <div><strong>Keep subscriptions private</strong><p>The subscription path is a secret. Rotate it by changing the <code class="mono">SUB_PATH</code> environment variable and redeploying the Worker.</p></div>
+                    </div>
+                </section>
+
+                <section class="view" id="view-network" data-view="network">
+                    <div class="view-head">
+                        <div>
+                            <span class="eyebrow">Network / Diagnostics</span>
+                            <h1>Network tools</h1>
+                            <p>Inspect the public identity of your deployment and the DNS-over-HTTPS endpoint used by clients.</p>
+                        </div>
+                        <button class="btn btn-ghost btn-sm" type="button" id="refresh-geo-location">
+                            <svg class="icon" aria-hidden="true"><use href="#i-refresh"></use></svg> Refresh identity
+                        </button>
+                    </div>
+
+                    <article class="network-card card depth">
+                        <div class="network-head">
+                            <div><span class="eyebrow">Public identity</span><h2>My IP</h2></div>
+                            <span class="badge" id="ipStatusBadge"><span class="status-dot idle"></span> Waiting</span>
+                        </div>
+                        <div class="ip-table-wrap">
+                            <table class="ip-table">
+                                <thead><tr><th>Information</th><th>Cloudflare target</th><th>Direct target</th></tr></thead>
+                                <tbody>
+                                    <tr><td>IP address</td><td id="cf-ip" class="mono">—</td><td id="ip" class="mono">—</td></tr>
+                                    <tr><td>Country</td><td id="cf-country">—</td><td id="country">—</td></tr>
+                                    <tr><td>City</td><td id="cf-city">—</td><td id="city">—</td></tr>
+                                    <tr><td>ISP</td><td id="cf-isp">—</td><td id="isp">—</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </article>
+
+                    <div class="network-grid">
+                        <article class="network-card card depth">
+                            <div class="network-head">
+                                <div><span class="eyebrow">DNS tunnel</span><h2>DoH endpoint</h2></div>
+                                <button class="icon-btn" type="button" id="copyDoh" aria-label="Copy DoH endpoint"><svg class="icon" aria-hidden="true"><use href="#i-copy"></use></svg></button>
+                            </div>
+                            <p class="network-desc">Use this address in clients that support DNS-over-HTTPS. Requests are proxied through your configured upstream resolver.</p>
+                            <code class="endpoint" id="doh">—</code>
+                        </article>
+                        <article class="network-card card depth">
+                            <div class="network-head">
+                                <div><span class="eyebrow">Proxy directory</span><h2>Proxy IP sources</h2></div>
+                                <a class="icon-btn" href="/proxy-ip" target="_blank" rel="noopener" aria-label="Open Proxy IP directory"><svg class="icon" aria-hidden="true"><use href="#i-external"></use></svg></a>
+                            </div>
+                            <p class="network-desc">Resolve the Proxy IPs configured in your environment and panel settings, with best-effort geo metadata.</p>
+                            <a class="btn btn-ghost" href="/proxy-ip" target="_blank" rel="noopener">
+                                <svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg> Open directory
+                            </a>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="view" id="view-security" data-view="security">
+                    <div class="view-head">
+                        <div>
+                            <span class="eyebrow">System / Security</span>
+                            <h1>Security</h1>
+                            <p>Review how this deployment protects the control plane and manage your session.</p>
+                        </div>
+                    </div>
+
+                    <div class="security-grid">
+                        <article class="security-card card depth">
+                            <div class="security-head">
+                                <span class="panel-icon"><svg class="icon" aria-hidden="true"><use href="#i-key"></use></svg></span>
+                                <div><span class="eyebrow">Credentials</span><h2>Panel password</h2></div>
+                            </div>
+                            <p>Passwords are stored as PBKDF2-SHA256 hashes. Changing the password invalidates every existing session.</p>
+                            <div class="security-actions">
+                                <button class="btn btn-primary" type="button" id="openResetPass" data-open-password>
+                                    <svg class="icon" aria-hidden="true"><use href="#i-key"></use></svg> Change password
+                                </button>
+                            </div>
+                        </article>
+
+                        <article class="security-card card depth">
+                            <div class="security-head">
+                                <span class="panel-icon"><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg></span>
+                                <div><span class="eyebrow">Hardening</span><h2>Active protections</h2></div>
+                            </div>
+                            <ul class="protection-list">
+                                <li><span class="status-dot"></span><div><strong>HttpOnly session cookie</strong><small>SameSite strict · 7 day lifetime</small></div></li>
+                                <li><span class="status-dot"></span><div><strong>Login throttling</strong><small>5 attempts per 15 minutes per address</small></div></li>
+                                <li><span class="status-dot"></span><div><strong>Security headers</strong><small>CSP, frame denial and no-sniff enabled</small></div></li>
+                                <li><span class="status-dot"></span><div><strong>Server-side validation</strong><small>Settings sanitized before KV persistence</small></div></li>
+                            </ul>
+                        </article>
+
+                        <article class="security-card card depth">
+                            <div class="security-head">
+                                <span class="panel-icon"><svg class="icon" aria-hidden="true"><use href="#i-logout"></use></svg></span>
+                                <div><span class="eyebrow">Session</span><h2>Sign out</h2></div>
+                            </div>
+                            <p>End this browser session immediately. You will need the panel password to sign back in.</p>
+                            <div class="security-actions">
+                                <button class="btn btn-danger" type="button" id="logout">
+                                    <svg class="icon" aria-hidden="true"><use href="#i-logout"></use></svg> Sign out
+                                </button>
+                            </div>
+                        </article>
+                    </div>
+
+                    <article class="security-card card about-card">
+                        <div class="about-brand"><span class="brand-mark">T</span><div><strong>Technamooz Panel</strong><small>Version v__VERSION__ · 1.0.0 stable</small></div></div>
+                        <p>A focused control plane for Cloudflare Worker proxy deployments. Xray, sing-box and Clash generators are available from one subscription surface.</p>
+                        <div class="about-links">
+                            <a class="btn btn-ghost btn-sm" href="https://github.com/technamooz/technamooz-panel" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-github"></use></svg> GitHub</a>
+                            <a class="btn btn-ghost btn-sm" href="https://technamooz.github.io/technamooz-panel/" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg> Documentation</a>
+                            <a class="btn btn-ghost btn-sm" href="/support"><svg class="icon" aria-hidden="true"><use href="#i-life"></use></svg> Support</a>
+                        </div>
+                    </article>
+                </section>
+            </main>
+
+            <footer class="app-footer">
+                <span>Technamooz Panel <code>v__VERSION__</code></span>
+                <span>Built for Cloudflare Workers</span>
+            </footer>
+        </div>
+    </div>
+
+    <div class="modal" id="passwordModal" aria-hidden="true">
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="passwordModalTitle">
+            <div class="modal-icon"><svg class="icon" aria-hidden="true"><use href="#i-lock"></use></svg></div>
+            <div class="modal-head">
+                <div>
+                    <h2 id="passwordModalTitle">Set a panel password</h2>
+                    <p id="passwordModalDescription">Protect this panel with a strong password. You will use it to sign in from now on.</p>
+                </div>
+                <button class="modal-close" type="button" data-modal-close id="passwordModalClose" aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#i-x"></use></svg></button>
+            </div>
+            <form id="passwordChangeForm" class="modal-body" novalidate>
+                <div class="field">
+                    <label class="field-label" for="newPassword">New password</label>
+                    <div class="password-wrapper">
+                        <input class="input" type="password" id="newPassword" name="newPassword" autocomplete="new-password" minlength="8" maxlength="128" required>
+                        <button class="password-toggle" type="button" data-password-toggle="newPassword" aria-label="Show password"><svg class="icon" aria-hidden="true"><use href="#i-eye"></use></svg></button>
+                    </div>
+                    <span class="field-hint">At least 8 characters with uppercase, lowercase and a number.</span>
+                </div>
+                <div class="field">
+                    <label class="field-label" for="confirmPassword">Confirm password</label>
+                    <div class="password-wrapper">
+                        <input class="input" type="password" id="confirmPassword" name="confirmPassword" autocomplete="new-password" required>
+                        <button class="password-toggle" type="button" data-password-toggle="confirmPassword" aria-label="Show password"><svg class="icon" aria-hidden="true"><use href="#i-eye"></use></svg></button>
+                    </div>
+                </div>
+                <div class="form-error" id="passwordError" role="alert"></div>
+                <div class="modal-foot">
+                    <button class="btn btn-ghost" type="button" id="passwordCancel" data-modal-close>Cancel</button>
+                    <button class="btn btn-primary" type="submit" id="changePasswordBtn">
+                        <svg class="icon" aria-hidden="true"><use href="#i-save"></use></svg> Save password
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="qrModal" aria-hidden="true">
+        <div class="modal-card qr-modal-card" role="dialog" aria-modal="true" aria-labelledby="qrcodeTitle">
+            <div class="modal-head">
+                <div>
+                    <span class="eyebrow">Scan to import</span>
+                    <h2 id="qrcodeTitle">Subscription QR</h2>
+                    <p>Open your client and scan this code.</p>
+                </div>
+                <button class="modal-close" type="button" data-modal-close aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#i-x"></use></svg></button>
+            </div>
+            <div class="qr-stage" id="qrcode-container"></div>
+            <code class="qr-url" id="qrcodeUrl"></code>
+            <div class="modal-foot">
+                <button class="btn btn-ghost" type="button" id="qrCopyBtn"><svg class="icon" aria-hidden="true"><use href="#i-copy"></use></svg> Copy link</button>
+                <button class="btn btn-primary" type="button" data-modal-close>Done</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="commandModal" aria-hidden="true">
+        <div class="modal-card command-card" role="dialog" aria-modal="true" aria-labelledby="commandTitle">
+            <div class="command-search">
+                <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
+                <input type="search" id="commandInput" placeholder="Jump to a page or setting..." aria-label="Search panel" autocomplete="off">
+                <kbd>ESC</kbd>
+            </div>
+            <h2 class="sr-only" id="commandTitle">Command palette</h2>
+            <div class="command-results" id="commandResults">
+                <button type="button" data-command-view="overview"><svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg><span>Dashboard</span><small>Overview</small></button>
+                <button type="button" data-command-view="configuration" data-command-tab="common"><svg class="icon" aria-hidden="true"><use href="#i-sliders"></use></svg><span>Common settings</span><small>Configuration</small></button>
+                <button type="button" data-command-view="configuration" data-command-tab="vless"><svg class="icon" aria-hidden="true"><use href="#i-layers"></use></svg><span>VLESS &amp; Trojan</span><small>Configuration</small></button>
+                <button type="button" data-command-view="configuration" data-command-tab="fragment"><svg class="icon" aria-hidden="true"><use href="#i-zap"></use></svg><span>Xray fragment</span><small>Configuration</small></button>
+                <button type="button" data-command-view="routing" data-command-tab="routing"><svg class="icon" aria-hidden="true"><use href="#i-route"></use></svg><span>Routing rules</span><small>Configuration</small></button>
+                <button type="button" data-command-view="configuration" data-command-tab="external"><svg class="icon" aria-hidden="true"><use href="#i-link"></use></svg><span>External configs</span><small>Configuration</small></button>
+                <button type="button" data-command-view="configuration" data-command-tab="warp"><svg class="icon" aria-hidden="true"><use href="#i-cloud"></use></svg><span>WARP general</span><small>Configuration</small></button>
+                <button type="button" data-command-view="configuration" data-command-tab="warp-pro"><svg class="icon" aria-hidden="true"><use href="#i-crown"></use></svg><span>WARP Pro</span><small>Configuration</small></button>
+                <button type="button" data-command-view="subscriptions"><svg class="icon" aria-hidden="true"><use href="#i-share"></use></svg><span>Delivery center</span><small>Subscriptions</small></button>
+                <button type="button" data-command-view="network"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg><span>Network tools</span><small>Diagnostics</small></button>
+                <button type="button" data-command-view="security"><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg><span>Security</span><small>System</small></button>
+            </div>
+        </div>
+    </div>
+
+    <script>__VENDOR__</script>
+    <script>__SCRIPT__</script>
+</body>
+
+</html>

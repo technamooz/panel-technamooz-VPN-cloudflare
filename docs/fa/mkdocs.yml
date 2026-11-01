@@ -1,0 +1,90 @@
+site_name: Technamooz Panel
+site_url: https://technamooz.github.io
+repo_url: https://github.com/technamooz/technamooz-panel
+copyright: Copyright &copy; Technamooz
+
+use_directory_urls: true
+site_dir: ../../site/fa
+extra_css:
+  - stylesheet/extra.css
+extra_javascript:
+  - scripts/lang-switch.js
+
+theme:
+  name: material
+  custom_dir: ../assets
+  logo: favicon.ico
+  favicon: favicon.ico
+  direction: rtl
+  language: fa
+  font:
+    text: Vazirmatn
+  palette:
+    - scheme: slate
+      primary: red
+      accent: red
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.instant
+    - navigation.indexes
+    - navigation.top
+    - content.code.copy
+    - toc.integrate
+    - navigation.tracking
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - md_in_html
+  
+extra:
+  alternate:
+    - name: English
+      lang: en
+      link: /technamooz-panel/
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/technamooz/technamooz-panel
+      name: Source code
+
+plugins:
+  - search
+
+nav:
+  - خانه: index.md
+  - راه‌اندازی:
+    - خودکار: installation/wizard.md
+    - Pages دستی: installation/pages-manual.md
+    - Workers دستی: installation/workers-manual.md
+  - راهنمای تنظیمات:
+    - configuration/index.md
+    - تنظیمات مشترک یا Common: configuration/common.md 
+    - پروتکل‌های VLESS و Trojan: configuration/vless-trojan.md 
+    - تنظیمات Fragment: configuration/fragment.md
+    - اضافه کردن کانفیگ‌های شخصی: configuration/external-configs.md
+    - تنظیمات عمومی Warp: configuration/warp.md
+    - تنظیمات Warp PRO: configuration/warp-pro.md
+    - قوانین مسیریابی یا Routing Rules: configuration/routing-rules.md
+  - نحوه‌ی استفاده: 
+    - usage/index.md
+    - اشتراک Normal: usage/normal.md
+    - اشتراک Fragment: usage/fragment.md
+    - اشتراک Raw: usage/raw.md
+    - اشتراک Warp: usage/warp.md
+    - اشتراک Warp PRO: usage/warp-pro.md
+    - DoH شخصی: usage/doh.md
+    - IP من: usage/my-ip.md
+  - سوالات متداول: faq.md

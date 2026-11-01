@@ -1,0 +1,90 @@
+site_name: Technamooz Panel
+site_url: https://technamooz.github.io
+repo_url: https://github.com/technamooz/technamooz-panel
+copyright: Copyright &copy; Technamooz
+
+use_directory_urls: true
+site_dir: ../../site
+extra_css:
+  - stylesheet/extra.css
+extra_javascript:
+  - scripts/lang-switch.js
+
+theme:
+  name: material
+  custom_dir: ../assets
+  logo: favicon.ico
+  favicon: favicon.ico
+  direction: ltr
+  language: en
+  font:
+    text: Vazirmatn
+  palette:
+    - scheme: slate
+      primary: red
+      accent: red
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.instant
+    - navigation.indexes
+    - navigation.top
+    - content.code.copy
+    - toc.integrate
+    - navigation.tracking
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - md_in_html
+
+extra:
+  alternate:
+    - name: فارسی
+      lang: fa
+      link: /technamooz-panel/fa/
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/technamooz/technamooz-panel
+      name: Source code
+
+plugins:
+  - search
+
+nav:
+  - Home: index.md
+  - Installation:
+    - Wizard: installation/wizard.md
+    - Manual - Pages: installation/pages-manual.md
+    - Manual - Workers: installation/workers-manual.md
+  - Configuration:
+    - configuration/index.md
+    - Common: configuration/common.md
+    - VLESS - Trojan: configuration/vless-trojan.md 
+    - Fragment: configuration/fragment.md
+    - External Raw Configs: configuration/external-configs.md
+    - Warp General: configuration/warp.md
+    - Warp PRO: configuration/warp-pro.md
+    - Routing rules: configuration/routing-rules.md
+  - Usage:
+    - usage/index.md
+    - Normal: usage/normal.md
+    - Fragment: usage/fragment.md
+    - Raw: usage/raw.md
+    - Warp: usage/warp.md
+    - Warp PRO: usage/warp-pro.md
+    - DoH: usage/doh.md
+    - My IP: usage/my-ip.md
+  - FAQ: faq.md

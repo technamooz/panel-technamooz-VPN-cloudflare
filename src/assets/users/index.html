@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#070708">
+    <meta name="color-scheme" content="dark light">
+    <title>کاربران · پنل تکناموز v__VERSION__</title>
+    <link rel="icon" href="/favicon.ico">
+    <script>__THEME_BOOT__</script>
+    __STYLE__
+</head>
+
+<body>
+    <div class="svg-sprite" aria-hidden="true">__ICONS__</div>
+
+    <main class="utility-page">
+        <header class="utility-header">
+            <a class="brand" href="/panel" aria-label="پنل تکناموز">
+                <span class="brand-mark">T<span></span></span>
+                <span class="brand-copy"><strong>تکناموز</strong><small>مدیریت کاربران</small></span>
+            </a>
+            <div class="header-actions">
+                <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="تغییر تم">
+                    <svg class="icon icon-moon" aria-hidden="true"><use href="#i-moon"></use></svg>
+                    <svg class="icon icon-sun" aria-hidden="true"><use href="#i-sun"></use></svg>
+                </button>
+                <button class="btn btn-primary btn-sm" type="button" id="openAddUser">
+                    <svg class="icon" aria-hidden="true"><use href="#i-plus"></use></svg> کاربر جدید
+                </button>
+                <a class="back-link" href="/panel"><svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg> مرکز کنترل</a>
+            </div>
+        </header>
+
+        <section class="users-section">
+            <div class="section-head">
+                <div>
+                    <span class="eyebrow">تکناموز / کاربران</span>
+                    <h2>مدیریت کاربران panels</h2>
+                    <p>افزودن، ویرایش و غیرفعال‌سازی کاربران دسترسی به پنل کنترل.</p>
+                </div>
+            </div>
+
+            <div class="users-toolbar">
+                <div class="search-field">
+                    <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
+                    <input class="input" type="search" id="searchUsers" placeholder="جستجوی کاربر…" autocomplete="off" spellcheck="false">
+                </div>
+                <span class="pill" id="userCount">— کاربر</span>
+            </div>
+
+            <div class="table-wrap">
+                <table id="usersTable">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">نام کاربری</th>
+                            <th scope="col">نقش</th>
+                            <th scope="col">وضعیت</th>
+                            <th scope="col">آخرین ورود</th>
+                            <th scope="col">اشتراک‌ها</th>
+                            <th scope="col" class="col-action">عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <tr class="state-row">
+                            <td colspan="7">
+                                <span class="state-mark"><svg class="icon spin" aria-hidden="true"><use href="#i-refresh"></use></svg></span>
+                                <span><strong>بارگذاری کاربران…</strong><small>از gespeichert لبه استخراج می‌شود.</small></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Add User Modal -->
+        <div class="modal" id="addUserModal" aria-hidden="true">
+            <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="addUserTitle">
+                <div class="modal-icon"><svg class="icon" aria-hidden="true"><use href="#i-user"></use></svg></div>
+                <div class="modal-head">
+                    <div>
+                        <h2 id="addUserTitle">افزودن کاربر جدید</h2>
+                        <p>مقاطع و نقش دسترسی کاربر را مشخص کنید.</p>
+                    </div>
+                    <button class="modal-close" type="button" data-modal-close aria-label="بستن"><svg class="icon" aria-hidden="true"><use href="#i-x"></use></svg></button>
+                </div>
+                <form id="addUserForm" class="modal-body" novalidate>
+                    <div class="field">
+                        <label class="field-label" for="newUserName">نام کاربری <span class="muted">*</span></label>
+                        <input class="input" type="text" id="newUserName" name="username" autocomplete="off" spellcheck="false" required>
+                    </div>
+                    <div class="field">
+                        <label class="field-label" for="newUserEmail">ایمیل</label>
+                        <input class="input" type="email" id="newUserEmail" name="email" autocomplete="email" spellcheck="false">
+                    </div>
+                    <div class="field">
+                        <label class="field-label" for="newUserRole">نقش دسترسی</label>
+                        <select class="select" id="newUserRole" name="role">
+                            <option value="user">کاربر عادی</option>
+                            <option value="admin">مدیر کل</option>
+                            <option value="viewer">مشاهده‌گر</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label class="field-label" for="newUserStatus">وضعیت</label>
+                        <select class="select" id="newUserStatus" name="status">
+                            <option value="active">فعال</option>
+                            <option value="suspended">موقتی غیرفعال</option>
+                            <option value="pending">در انتظار تایید</option>
+                        </select>
+                    </div>
+                    <div class="form-error" id="addUserError" role="alert"></div>
+                    <div class="modal-foot">
+                        <button class="btn btn-ghost" type="button" data-modal-close>لغو</button>
+                        <button class="btn btn-primary" type="submit">ایجاد کاربر</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <footer class="footer-note">
+            <span>تکناموز Panel <code class="mono">v__VERSION__</code></span>
+            <span>مدیریت دسترسی با سطح amministری</span>
+        </footer>
+    </main>
+
+    <script>__VENDOR__</script>
+    <script>__SCRIPT__</script>
+</body>
+
+</html>

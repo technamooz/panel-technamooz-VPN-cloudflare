@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#070708">
+    <meta name="color-scheme" content="dark light">
+    <title>Proxy IP directory · Technamooz Panel v__VERSION__</title>
+    <link rel="icon" href="/favicon.ico">
+    <script>__THEME_BOOT__</script>
+    __STYLE__
+</head>
+
+<body class="proxy-page">
+    <div class="svg-sprite" aria-hidden="true">__ICONS__</div>
+
+    <main class="utility-page">
+        <header class="utility-header">
+            <a class="brand" href="/panel" aria-label="Technamooz Panel">
+                <span class="brand-mark">T<span></span></span>
+                <span class="brand-copy"><strong>Technamooz</strong><small>Network tools</small></span>
+            </a>
+            <div class="header-actions">
+                <span class="badge live-badge"><span class="status-dot"></span> Edge online</span>
+                <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Toggle theme">
+                    <svg class="icon icon-moon" aria-hidden="true"><use href="#i-moon"></use></svg>
+                    <svg class="icon icon-sun" aria-hidden="true"><use href="#i-sun"></use></svg>
+                </button>
+                <a class="back-link" href="/support"><svg class="icon" aria-hidden="true"><use href="#i-life"></use></svg> Support</a>
+                <a class="back-link" href="/panel"><svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg> Control center</a>
+            </div>
+        </header>
+
+        <section class="proxy-hero">
+            <div class="proxy-hero-copy">
+                <span class="eyebrow">Network tools / Proxy IP</span>
+                <h1 class="hero-title">Clean exit addresses,<br><em>ready to route.</em></h1>
+                <p>Every address below was resolved from your Worker environment and saved Proxy IP sources. Copy a relay address and use it anywhere your Technamooz configuration expects a Proxy IP.</p>
+                <div class="proxy-hero-meta">
+                    <span class="badge"><svg class="icon" aria-hidden="true"><use href="#i-server"></use></svg> Live resolver</span>
+                    <span class="badge"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg> Geo enriched</span>
+                    <span class="badge"><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg> Authenticated view</span>
+                </div>
+            </div>
+
+            <aside class="proxy-panel card" aria-label="Resolver status">
+                <div class="proxy-panel-head">
+                    <div>
+                        <span class="eyebrow">Resolver status</span>
+                        <h2>Edge directory</h2>
+                    </div>
+                    <span class="status-line is-loading" id="result-status">
+                        <span class="status-dot accent"></span>
+                        <span id="resultStatusText">Contacting edge</span>
+                    </span>
+                </div>
+
+                <div class="proxy-stats">
+                    <div class="proxy-stat">
+                        <strong id="resultCount">—</strong>
+                        <small>Addresses</small>
+                    </div>
+                    <div class="proxy-stat">
+                        <strong id="resultUpdated">—</strong>
+                        <small>Last refresh</small>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary btn-lg proxy-generate" type="button" id="refreshBtn">
+                    <svg class="icon" aria-hidden="true"><use href="#i-refresh"></use></svg>
+                    <span>Generate Proxy IPs</span>
+                </button>
+                <p class="proxy-panel-hint">
+                    <svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg>
+                    <span>The resolver reads saved panel settings, <code class="mono">PROXY_IP</code> and built-in sources. Domain sources are resolved to IPv4 addresses before lookup.</span>
+                </p>
+            </aside>
+        </section>
+
+        <section class="directory-card card" aria-labelledby="directoryTitle">
+            <div class="directory-head">
+                <div>
+                    <span class="eyebrow">Resolved addresses</span>
+                    <h2 id="directoryTitle">Available Proxy IPs</h2>
+                </div>
+                <div class="directory-tools">
+                    <label class="search-field" for="searchInput">
+                        <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
+                        <input class="input" type="search" id="searchInput" placeholder="Filter IP, country, ISP…" autocomplete="off" spellcheck="false">
+                    </label>
+                    <span class="pill" id="visibleCount">— records</span>
+                </div>
+            </div>
+
+            <div class="table-wrap">
+                <table id="geo-table">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="col-index">#</th>
+                            <th scope="col">Proxy IP</th>
+                            <th scope="col">Country</th>
+                            <th scope="col" class="col-city">City</th>
+                            <th scope="col" class="col-isp">ISP</th>
+                            <th scope="col" class="col-action"><span class="sr-only">Copy</span></th>
+                        </tr>
+                    </thead>
+                    <tbody id="geoTableBody">
+                        <tr class="state-row">
+                            <td colspan="6">
+                                <span class="state-mark"><svg class="icon spin" aria-hidden="true"><use href="#i-refresh"></use></svg></span>
+                                <span><strong>Loading Proxy IP directory</strong><small>Resolving configured sources at the edge…</small></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="directory-foot">
+                <span><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg> Geo metadata is best-effort and may be incomplete for some ranges.</span>
+                <a href="/panel#configuration">Manage Proxy IP sources <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+            </div>
+        </section>
+
+        <footer class="footer-note">
+            <span>Technamooz Panel · Network tools</span>
+            <span class="mono">v__VERSION__</span>
+        </footer>
+    </main>
+
+    <script>__SCRIPT__</script>
+</body>
+
+</html>

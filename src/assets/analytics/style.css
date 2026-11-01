@@ -1,0 +1,232 @@
+/* Technamooz Panel — analytics styles */
+.analytics-hero {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.analytics-hero-copy {
+    max-width: 650px;
+    padding: 10px 0;
+}
+
+.analytics-hero-copy .hero-title {
+    margin-top: 15px;
+}
+
+.analytics-hero-copy > p {
+    max-width: 570px;
+    margin-top: 20px;
+    color: var(--muted);
+    font-size: 0.94rem;
+    line-height: 1.72;
+}
+
+.analytics-section {
+    margin-top: clamp(44px, 7vw, 74px);
+}
+
+.section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+}
+
+.section-head h2 {
+    margin-top: 7px;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+}
+
+.section-head p {
+    margin-top: 7px;
+    color: var(--muted);
+    font-size: 0.84rem;
+}
+
+.section-actions {
+    display: flex;
+    gap: 9px;
+}
+
+.metric-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 30px;
+}
+
+.metric-card {
+    padding: 20px;
+    border-radius: var(--radius-lg);
+}
+
+.metric-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    color: var(--faint);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+}
+
+.metric-icon {
+    display: grid;
+    place-items: center;
+    width: 33px;
+    height: 33px;
+    border-radius: 10px;
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+.metric-icon.success {
+    background: var(--success-soft);
+    color: var(--success);
+}
+
+.metric-icon .icon {
+    width: 16px;
+    height: 16px;
+}
+
+.metric-value {
+    display: block;
+    margin-top: 14px;
+    font-size: clamp(1.3rem, 2vw, 1.72rem);
+    font-weight: 650;
+    letter-spacing: -0.035em;
+    line-height: 1.1;
+}
+
+.metric-card p {
+    margin-top: 7px;
+    color: var(--faint);
+    font-size: 0.74rem;
+    line-height: 1.5;
+    min-height: 2.2em;
+}
+
+.text-success { color: var(--success); }
+.text-danger { color: var(--danger); }
+
+.analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.analytics-card.wide {
+    grid-column: 1 / -1;
+}
+
+.analytics-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.analytics-head h2 {
+    margin-top: 7px;
+    font-size: 1.24rem;
+}
+
+.chart-wrap {
+    position: relative;
+    height: 220px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: rgba(0,0,0,0.12);
+    padding: 16px;
+}
+
+.chart-legend {
+    display: flex;
+    gap: 14px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.74rem;
+    color: var(--muted);
+}
+
+.legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.client-grid {
+    display: grid;
+    gap: 10px;
+}
+
+.client-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: rgba(0,0,0,0.12);
+}
+
+.client-name {
+    min-width: 80px;
+    font-size: 0.78rem;
+    color: var(--text-soft);
+}
+
+.client-count {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.client-bar {
+    flex: 1;
+    height: 8px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.client-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-deep));
+}
+
+@media (max-width: 980px) {
+    .analytics-grid {
+        grid-template-columns: 1fr;
+    }
+    .metric-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .metric-grid {
+        grid-template-columns: 1fr;
+    }
+    .analytics-hero {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

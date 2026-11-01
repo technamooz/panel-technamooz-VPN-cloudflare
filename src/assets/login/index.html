@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#070708">
+    <meta name="color-scheme" content="dark light">
+    <title>Sign in · Technamooz Panel v__VERSION__</title>
+    <link rel="icon" href="/favicon.ico">
+    <script>__THEME_BOOT__</script>
+    __STYLE__
+</head>
+
+<body class="auth-page">
+    <div class="svg-sprite" aria-hidden="true">__ICONS__</div>
+
+    <main class="auth-shell">
+        <section class="auth-visual" aria-label="Technamooz Panel">
+            <a class="brand" href="/panel" aria-label="Technamooz Panel">
+                <span class="brand-mark">T<span></span></span>
+                <span class="brand-copy"><strong>Technamooz</strong><small>Control center</small></span>
+            </a>
+
+            <div class="auth-copy">
+                <span class="eyebrow">Secure gateway</span>
+                <h1>Your edge.<br><em>Under control.</em></h1>
+                <p>Configure protocols, shape routing and deliver clean subscription profiles from one protected workspace.</p>
+                <ul class="auth-points">
+                    <li><span class="auth-point-icon"><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg></span><span><strong>Hardened sessions</strong><small>HttpOnly cookie · constant-time checks</small></span></li>
+                    <li><span class="auth-point-icon"><svg class="icon" aria-hidden="true"><use href="#i-layers"></use></svg></span><span><strong>Three cores</strong><small>Xray · sing-box · Clash</small></span></li>
+                    <li><span class="auth-point-icon"><svg class="icon" aria-hidden="true"><use href="#i-cloud"></use></svg></span><span><strong>Cloudflare native</strong><small>Workers runtime · KV storage</small></span></li>
+                </ul>
+            </div>
+
+            <footer class="auth-visual-foot">
+                <span class="live-status"><span class="status-dot"></span> Edge online</span>
+                <span class="mono">v__VERSION__</span>
+            </footer>
+        </section>
+
+        <section class="auth-panel card">
+            <div class="auth-panel-top">
+                <span class="badge"><svg class="icon" aria-hidden="true"><use href="#i-lock"></use></svg> Protected area</span>
+                <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Toggle theme">
+                    <svg class="icon icon-moon" aria-hidden="true"><use href="#i-moon"></use></svg>
+                    <svg class="icon icon-sun" aria-hidden="true"><use href="#i-sun"></use></svg>
+                </button>
+            </div>
+
+            <div class="auth-form-head">
+                <span class="eyebrow">Panel access</span>
+                <h2>Welcome back</h2>
+                <p>Enter the panel password to unlock the workspace.</p>
+            </div>
+
+            <form id="loginForm" class="auth-form" novalidate>
+                <div class="field">
+                    <label class="field-label" for="password">Panel password</label>
+                    <div class="password-wrapper">
+                        <input class="input" type="password" id="password" name="password" autocomplete="current-password" spellcheck="false" maxlength="128" required autofocus>
+                        <button class="password-toggle" type="button" id="togglePassword" aria-label="Show password">
+                            <svg class="icon" aria-hidden="true"><use href="#i-eye"></use></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-error" id="passwordError" role="alert"></div>
+
+                <button class="btn btn-primary btn-lg auth-submit" type="submit" id="loginSubmit">
+                    <svg class="icon" aria-hidden="true"><use href="#i-login"></use></svg>
+                    Sign in to panel
+                </button>
+
+                <a class="auth-setup-link" id="setupLink" href="/panel" hidden>
+                    No password is set yet. Open the panel to create one.
+                </a>
+            </form>
+
+            <div class="auth-panel-foot">
+                <span><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg> PBKDF2-SHA256 · throttled access</span>
+                <a href="/support">Need help?</a>
+            </div>
+        </section>
+    </main>
+
+    <script>__SCRIPT__</script>
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#070708">
+    <meta name="color-scheme" content="dark light">
+    <title>تحلیلات · پنل تکناموز v__VERSION__</title>
+    <link rel="icon" href="/favicon.ico">
+    <script>__THEME_BOOT__</script>
+    __STYLE__
+</head>
+
+<body>
+    <div class="svg-sprite" aria-hidden="true">__ICONS__</div>
+
+    <main class="utility-page">
+        <header class="utility-header">
+            <a class="brand" href="/panel" aria-label="پنل تکناموز">
+                <span class="brand-mark">T<span></span></span>
+                <span class="brand-copy"><strong>تکناموز</strong><small>تحلیلات و آمار</small></span>
+            </a>
+            <div class="header-actions">
+                <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="تغییر تم">
+                    <svg class="icon icon-moon" aria-hidden="true"><use href="#i-moon"></use></svg>
+                    <svg class="icon icon-sun" aria-hidden="true"><use href="#i-sun"></use></svg>
+                </button>
+                <a class="back-link" href="/panel"><svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg> مرکز کنترل</a>
+            </div>
+        </header>
+
+        <section class="analytics-hero">
+            <div class="analytics-hero-copy">
+                <span class="eyebrow">تکناموز / تحلیلات</span>
+                <h1 class="hero-title">نما،<br><em>درک و تصمیم.</em></h1>
+                <p>آمادگیReports کامل از استفاده از اشتراک‌ها، کاربران و عملکرد سیستم در یک مرکز unified.</p>
+            </div>
+            <span class="badge badge-accent"><svg class="icon" aria-hidden="true"><use href="#i-activity"></use></svg> پاسخ‌مدار</span>
+        </section>
+
+        <section class="analytics-section">
+            <div class="section-head">
+                <div>
+                    <span class="eyebrow">מדדים کلیدی</span>
+                    <h2>داشبورد عملکرد</h2>
+                    <p>اسناس 숎ات لحظه‌ای از وضعیت پنل و atrapه اشتراک‌ها.</p>
+                </div>
+                <div class="section-actions">
+                    <button class="btn btn-ghost btn-sm" type="button" id="refreshStats">
+                        <svg class="icon" aria-hidden="true"><use href="#i-refresh"></use></svg> بروز رسانی
+                    </button>
+                </div>
+            </div>
+
+            <div class="metric-grid">
+                <article class="metric-card card">
+                    <div class="metric-top"><span>اشتراک فعال</span><span class="metric-icon"><svg class="icon" aria-hidden="true"><use href="#i-share"></use></svg></span></div>
+                    <strong class="metric-value" id="statActiveSubs">—</strong>
+                    <p>اشتراک‌های درخواست شده در ۲۴ ساعت گذشته</p>
+                </article>
+                <article class="metric-card card">
+                    <div class="metric-top"><span>کاربران</span><span class="metric-icon"><svg class="icon" aria-hidden="true"><use href="#i-user"></use></svg></span></div>
+                    <strong class="metric-value" id="statUsers">—</strong>
+                    <p>کاربران ثبت شده در پنل</p>
+                </article>
+                <article class="metric-card card">
+                    <div class="metric-top"><span>کلید API</span><span class="metric-icon"><svg class="icon" aria-hidden="true"><use href="#i-key"></use></svg></span></div>
+                    <strong class="metric-value" id="statApiKeys">—</strong>
+                    <p>کلیدهای فعال برای دسترسی برنامه‌نویسی</p>
+                </article>
+                <article class="metric-card card">
+                    <div class="metric-top"><span>ارزیابی سیستم</span><span class="metric-icon success"><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg></span></div>
+                    <strong class="metric-value" id="statHealth">—</strong>
+                    <p>وضعیتی services پایگاهی و شبکه</p>
+                </article>
+            </div>
+
+            <div class="analytics-grid">
+                <article class="analytics-card card wide">
+                    <div class="analytics-head">
+                        <span class="eyebrow">چارت استفاده</span>
+                        <h2>ترند اشتراک‌ها</h2>
+                    </div>
+                    <div class="chart-wrap">
+                        <div class="chart-wrap" id="trendChart"></div>
+                    </div>
+                    <div class="chart-legend">
+                        <span class="legend-item"><span class="legend-dot" style="background:var(--accent)"></span> اشتراک normal</span>
+                        <span class="legend-item"><span class="legend-dot" style="background:var(--success)"></span> اشتراک fragment</span>
+                        <span class="legend-item"><span class="legend-dot" style="background:var(--warning)"></span> اشتراک warp</span>
+                    </div>
+                </article>
+
+                <article class="analytics-card card">
+                    <div class="analytics-head">
+                        <span class="eyebrow">توزیع کلاینت</span>
+                        <h2>苧 purchasing клиентов</h2>
+                    </div>
+                    <div class="client-grid" id="clientGrid"></div>
+                </article>
+            </div>
+        </section>
+
+        <footer class="footer-note">
+            <span>تکناموز Panel <code class="mono">v__VERSION__</code></span>
+            <span>تحلیلات با دقت در لبه Cloudflare Workers</span>
+        </footer>
+    </main>
+
+    <script>__VENDOR__</script>
+    <script>__SCRIPT__</script>
+</body>
+
+</html>

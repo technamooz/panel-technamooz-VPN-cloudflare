@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#070708">
+    <meta name="color-scheme" content="dark light">
+    <title>Something went wrong · Technamooz Panel v__VERSION__</title>
+    <link rel="icon" href="/favicon.ico">
+    <script>__THEME_BOOT__</script>
+    __STYLE__
+</head>
+
+<body class="error-page">
+    <div class="svg-sprite" aria-hidden="true">__ICONS__</div>
+
+    <main class="error-shell">
+        <div class="error-orbit" aria-hidden="true"><span></span><span></span><span></span></div>
+
+        <section class="error-card card" aria-labelledby="errorTitle">
+            <header class="error-head">
+                <a class="brand" href="/panel" aria-label="Technamooz Panel">
+                    <span class="brand-mark">T<span></span></span>
+                    <span class="brand-copy"><strong>Technamooz</strong><small>Edge workspace</small></span>
+                </a>
+                <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Toggle theme">
+                    <svg class="icon icon-moon" aria-hidden="true"><use href="#i-moon"></use></svg>
+                    <svg class="icon icon-sun" aria-hidden="true"><use href="#i-sun"></use></svg>
+                </button>
+            </header>
+
+            <div class="error-visual">
+                <span class="error-mark"><svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg></span>
+                <span class="error-code mono">EDGE / 500</span>
+            </div>
+
+            <div class="error-copy">
+                <span class="eyebrow">Runtime fault</span>
+                <h1 id="errorTitle">Something went wrong<span>.</span></h1>
+                <p>The Worker could not finish this request. Your configuration has not been changed. Retry once, then use the support channel if the fault continues.</p>
+            </div>
+
+            <div class="error-detail">
+                <div class="error-detail-head">
+                    <span>Error details</span>
+                    <button class="btn btn-quiet btn-sm" type="button" id="copyError">
+                        <svg class="icon" aria-hidden="true"><use href="#i-copy"></use></svg>
+                        Copy
+                    </button>
+                </div>
+                <code class="mono" id="errorMessage">__ERROR_MESSAGE__</code>
+            </div>
+
+            <div class="error-actions">
+                <button class="btn btn-primary btn-lg" type="button" id="retryButton">
+                    <svg class="icon" aria-hidden="true"><use href="#i-refresh"></use></svg>
+                    Retry request
+                </button>
+                <a class="btn btn-ghost btn-lg" href="/panel">
+                    <svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg>
+                    Control center
+                </a>
+                <a class="btn btn-ghost btn-lg" href="/support">
+                    <svg class="icon" aria-hidden="true"><use href="#i-life"></use></svg>
+                    Support
+                </a>
+            </div>
+
+            <footer class="error-foot">
+                <span><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg> Secrets and credentials are never included in this message.</span>
+                <span class="mono">v__VERSION__</span>
+            </footer>
+        </section>
+    </main>
+
+    <script>__SCRIPT__</script>
+</body>
+
+</html>

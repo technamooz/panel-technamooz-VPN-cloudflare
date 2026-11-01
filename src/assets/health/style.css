@@ -1,0 +1,189 @@
+/* Technamooz Panel — health styles */
+.health-section {
+    margin-top: clamp(44px, 7vw, 74px);
+}
+
+.section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+}
+
+.section-head h2 {
+    margin-top: 7px;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+}
+
+.section-head p {
+    margin-top: 7px;
+    color: var(--muted);
+    font-size: 0.84rem;
+}
+
+.health-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
+.health-card {
+    padding: 22px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    background: rgba(0,0,0,0.12);
+    position: relative;
+    overflow: hidden;
+}
+
+html[data-theme="light"] .health-card {
+    background: rgba(255,255,255,0.46);
+}
+
+.health-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 12px;
+}
+
+.health-icon {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    flex: none;
+    border-radius: 10px;
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+.health-icon .icon {
+    width: 18px;
+    height: 18px;
+}
+
+.health-head > div {
+    min-width: 0;
+}
+
+.health-label {
+    display: block;
+    color: var(--faint);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.health-value {
+    display: block;
+    color: var(--text-soft);
+    font-size: 0.95rem;
+    font-weight: 650;
+    margin-top: 2px;
+}
+
+.health-desc {
+    color: var(--muted);
+    font-size: 0.74rem;
+    line-height: 1.5;
+    margin-top: 8px;
+}
+
+.health-meta {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.68rem;
+    color: var(--faint);
+    word-break: break-all;
+}
+
+.health-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+.health-details {
+    padding: 22px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    background: rgba(0,0,0,0.12);
+    margin-top: 0;
+}
+
+html[data-theme="light"] .health-details {
+    background: rgba(255,255,255,0.46);
+}
+
+.health-details .health-head {
+    margin-bottom: 16px;
+}
+
+.health-details .health-head h3 {
+    margin-top: 5px;
+    font-size: 1.05rem;
+}
+
+.health-checks {
+    display: grid;
+    gap: 10px;
+}
+
+.health-detail-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: rgba(0,0,0,0.08);
+}
+
+.health-detail-item > div {
+    display: grid;
+    gap: 2px;
+    min-width: 0;
+}
+
+.health-detail-item strong {
+    font-size: 0.78rem;
+    color: var(--text-soft);
+}
+
+.health-detail-item small {
+    color: var(--muted);
+    font-size: 0.68rem;
+}
+
+.health-error {
+    margin-top: 6px;
+    padding: 8px;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 90, 95, 0.08);
+    border: 1px solid rgba(255, 90, 95, 0.2);
+    color: var(--danger);
+    font-size: 0.7rem;
+    font-family: var(--font-mono);
+}
+
+.health-actions {
+    margin-top: 24px;
+    display: flex;
+    gap: 10px;
+}
+
+@media (max-width: 900px) {
+    .health-grid {
+        grid-template-columns: 1fr;
+    }
+}

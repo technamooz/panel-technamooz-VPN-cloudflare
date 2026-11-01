@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#070708">
+    <meta name="color-scheme" content="dark light">
+    <title>سلامت سیستم · پنل تکناموز v__VERSION__</title>
+    <link rel="icon" href="/favicon.ico">
+    <script>__THEME_BOOT__</script>
+    __STYLE__
+</head>
+
+<body>
+    <div class="svg-sprite" aria-hidden="true">__ICONS__</div>
+
+    <main class="utility-page">
+        <header class="utility-header">
+            <a class="brand" href="/panel" aria-label="پنل تکناموز">
+                <span class="brand-mark">T<span></span></span>
+                <span class="brand-copy"><strong>تکناموز</strong><small>سلامت سیستم</small></span>
+            </a>
+            <div class="header-actions">
+                <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="تغییر تم">
+                    <svg class="icon icon-moon" aria-hidden="true"><use href="#i-moon"></use></svg>
+                    <svg class="icon icon-sun" aria-hidden="true"><use href="#i-sun"></use></svg>
+                </button>
+                <button class="btn btn-ghost btn-sm" type="button" id="refreshHealth">
+                    <svg class="icon" aria-hidden="true"><use href="#i-refresh"></use></svg> بررسی مجدد
+                </button>
+                <a class="back-link" href="/panel"><svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg> مرکز کنترل</a>
+            </div>
+        </header>
+
+        <section class="health-section">
+            <div class="section-head">
+                <div>
+                    <span class="eyebrow">تکناموز / مانیتورینگ</span>
+                    <h2>وضعیت زیرساخت</h2>
+                    <p>بررسی لحظه‌ای存続ی سرویس‌های لبه Cloudflare و وصله‌های خارجی.</p>
+                </div>
+                <span class="badge" id="healthOverallBadge"><span class="status-dot idle"></span> بررسی نشده</span>
+            </div>
+
+            <div class="health-grid">
+                <article class="health-card card">
+                    <div class="health-head">
+                        <span class="health-icon"><svg class="icon" aria-hidden="true"><use href="#i-database"></use></svg></span>
+                        <div>
+                            <span class="health-label">Cloudflare KV</span>
+                            <strong class="health-value" id="healthKV">—</strong>
+                        </div>
+                        <span class="health-status" id="healthKVStatus"><span class="status-dot idle"></span></span>
+                    </div>
+                    <p class="health-desc">حافظة کلید-مقدار برای تنظیمات، کاربران و اینالیتیکس.</p>
+                    <span class="health-meta mono" id="healthKVMeta">زمینه respond نشده</span>
+                </article>
+
+                <article class="health-card card">
+                    <div class="health-head">
+                        <span class="health-icon"><svg class="icon" aria-hidden="true"><use href="#i-dns"></use></svg></span>
+                        <div>
+                            <span class="health-label">DNS resolver</span>
+                            <strong class="health-value" id="healthDNS">—</strong>
+                        </div>
+                        <span class="health-status" id="healthDNSStatus"><span class="status-dot idle"></span></span>
+                    </div>
+                    <p class="health-desc">utscheveribility سرورهای DNS برای تلресول کردن دامنه‌ها.</p>
+                    <span class="health-meta mono" id="healthDNSMeta">زمینه respond نشده</span>
+                </article>
+
+                <article class="health-card card">
+                    <div class="health-head">
+                        <span class="health-icon"><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg></span>
+                        <div>
+                            <span class="health-label">سیستم کل</td>
+                            <strong class="health-value" id="healthSystem">—</strong>
+                        </div>
+                        <span class="health-status" id="healthSystemStatus"><span class="status-dot idle"></span></span>
+                    </div>
+                    <p class="health-desc">تأمین وضعیت هم‌جمع همه اجزای زیرساختی.</p>
+                    <span class="health-meta mono" id="healthSystemMeta">—</span>
+                </article>
+            </div>
+
+            <div class="health-details card">
+                <div class="health-head">
+                    <span class="eyebrow">جزئیات diagnose</span>
+                    <h3>گزارش کامل بررسی</h3>
+                </div>
+                <div class="health-checks" id="healthChecks"></div>
+            </div>
+
+            <div class="health-actions">
+                <button class="btn btn-primary" type="button" id="refreshHealth2">
+                    <svg class="icon" aria-hidden="true"><use href="#i-refresh"></use></svg>Refresh Health
+                </button>
+            </div>
+        </section>
+
+        <footer class="footer-note">
+            <span>تکناموز Panel <code class="mono">v__VERSION__</code></span>
+            <span>سلامت سیستم در لحظه استعلام می‌شود</span>
+        </footer>
+    </main>
+
+    <script>__VENDOR__</script>
+    <script>__SCRIPT__</script>
+</body>
+
+</html>
